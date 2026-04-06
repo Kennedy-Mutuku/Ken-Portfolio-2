@@ -1,23 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Code2, Camera, Video, Terminal, Cpu, Layout } from 'lucide-react'
+import { Terminal, Cpu, Layout } from 'lucide-react'
+import kenImg from '../assets/ken.jpg.jpeg';
 
 const About = () => {
-  const experiences = [
-    {
-      title: "Software Engineering",
-      icon: <Code2 size={40} />,
-      desc: "Specialized in full-stack development, automating workflows, and building scalable digital solutions.",
-      skills: ["React", "Node.js", "MongoDB", "Python", "Full Stack"]
-    },
-    {
-      title: "Photography & Video",
-      icon: <Camera size={40} />,
-      desc: "Capturing moments through high-quality visuals, ensuring clarity and an unforgettable aesthetic.",
-      skills: ["Vivid Visuals", "Storytelling", "Post-processing", "Videography"]
-    }
-  ]
-
   return (
     <section id="about" className="about">
       <div className="container">
@@ -30,11 +16,16 @@ const About = () => {
           <div className="about-content">
             <h3>Hello, I'm Kennedy Kioko Mutuku</h3>
             <p>
-              I am a multi-disciplinary professional blending the logic of <strong>Software Engineering</strong> with the creativity of <strong>Photography and Videography</strong>. 
-              My mission is to help people focus on what truly matters by automating the mundane and capturing the extraordinary.
+              I am a Software Engineer specializing in full-stack development (MERN stack), passionate about building scalable, real-world systems that solve meaningful problems. I combine strong technical skills with creativity from photography and videography to deliver both functional and visually engaging digital experiences.
             </p>
             <p>
-              Whether it's writing clean, efficient code or framing the perfect shot, I am dedicated to delivering professional results that stand out.
+              I have experience designing and developing systems such as management platforms, booking systems, and automation tools, focusing on efficiency, usability, and reliability. I enjoy turning complex manual processes into simple, automated solutions that improve productivity and user experience.
+            </p>
+            <p>
+              Beyond development, I bring leadership and collaboration skills, having led projects and worked closely with teams to deliver impactful solutions.
+            </p>
+            <p>
+              Whether it's writing clean, maintainable code or creating compelling visuals, I am committed to delivering high-quality, professional results that make a difference.
             </p>
             
             <div className="skill-tags">
@@ -44,22 +35,21 @@ const About = () => {
             </div>
           </div>
 
-          <div className="exp-cards">
-            {experiences.map((exp, b) => (
-              <motion.div 
-                key={b} 
-                className="exp-card"
-                whileHover={{ y: -10 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="icon">{exp.icon}</div>
-                <h4>{exp.title}</h4>
-                <p>{exp.desc}</p>
-                <div className="exp-skills">
-                  {exp.skills.map(s => <span key={s}>{s}</span>)}
-                </div>
-              </motion.div>
-            ))}
+          <div className="about-image-col">
+            <motion.div 
+              className="about-image-card"
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <div className="img-wrapper">
+                <img src={kenImg} alt="Kennedy Kioko Mutuku" />
+              </div>
+              <div className="card-floating-badge">
+                <p style={{ fontSize: '0.9rem', lineHeight: '1.4', margin: 0, fontWeight: '500', color: '#444' }}>
+                  I am a results-driven software engineer who builds scalable systems, solves real-world problems, and delivers impactful digital experiences with precision and creativity, backed by strong leadership, effective communication, and confident public speaking abilities.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -67,11 +57,12 @@ const About = () => {
       <style>{`
         .about {
           background-color: white;
+          padding: 2.5rem 0 5rem 0;
         }
 
         .section-header {
           text-align: center;
-          margin-bottom: 4rem;
+          margin-bottom: 2.5rem;
         }
 
         .section-header h2 {
@@ -87,7 +78,7 @@ const About = () => {
           width: 80px;
           height: 5px;
           background: var(--primary);
-          margin: 1rem auto;
+          margin: 0.8rem auto 0;
           border-radius: 10px;
         }
 
@@ -128,61 +119,68 @@ const About = () => {
           gap: 0.5rem;
         }
 
-        .exp-cards {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 2rem;
+        .about-image-col {
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
-        .exp-card {
-          padding: 2rem;
+        .about-image-card {
+          position: relative;
           background: var(--bg-cream);
+          padding: 1.5rem;
           border-radius: 20px;
-          text-align: center;
-          transition: var(--transition);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+          max-width: 450px;
+          margin: 0 auto;
         }
 
-        .exp-card .icon {
-          color: var(--primary);
-          margin-bottom: 1.5rem;
-          display: flex;
-          justify-content: center;
+        .img-wrapper {
+          border-radius: 12px;
+          overflow: hidden;
+          width: 100%;
+          height: auto;
         }
 
-        .exp-card h4 {
-          font-size: 1.2rem;
-          margin-bottom: 1rem;
+        .img-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
 
-        .exp-card p {
-          font-size: 0.9rem;
-          color: #666;
-          margin-bottom: 1.5rem;
+        .card-floating-badge {
+          position: absolute;
+          bottom: -30px;
+          right: -20px;
+          background: white;
+          padding: 1.2rem;
+          border-radius: 12px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+          max-width: 320px;
+          border: 1px solid rgba(0,0,0,0.05);
+          z-index: 10;
         }
 
-        .exp-skills {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-
-        .exp-skills span {
-          font-size: 0.75rem;
-          padding: 0.2rem 0.6rem;
-          background: rgba(0, 0, 0, 0.05);
-          border-radius: 4px;
-          font-weight: 500;
-        }
+        /* Removed years/text styles as they are replaced by a paragraph */
 
         @media (max-width: 992px) {
+          .about {
+            padding: 1.5rem 0 4rem 0;
+          }
+          .section-header {
+            margin-bottom: 1.5rem;
+          }
           .about-grid {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
             text-align: center;
           }
-          .exp-cards {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          .skill-tags {
+            justify-content: center;
+          }
+          .about-image-card {
+            margin-bottom: 2rem;
           }
           .about-content h3 {
             font-size: 1.6rem;
@@ -190,11 +188,19 @@ const About = () => {
         }
 
         @media (max-width: 600px) {
-          .exp-cards {
-            grid-template-columns: 1fr;
+          .section-header {
+            margin-bottom: 1rem;
           }
-          .skill-tags {
-            justify-content: center;
+          .about-grid {
+            gap: 2rem;
+          }
+          .card-floating-badge {
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -35px;
+            width: 90%;
+            max-width: 350px;
           }
         }
       `}</style>

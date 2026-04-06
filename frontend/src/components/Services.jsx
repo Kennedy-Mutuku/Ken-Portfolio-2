@@ -44,9 +44,10 @@ const Services = () => {
         @media (max-width: 600px) {
           .services-grid {
             grid-template-columns: 1fr;
+            gap: 1.5rem;
           }
           .service-card {
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
           }
         }
 

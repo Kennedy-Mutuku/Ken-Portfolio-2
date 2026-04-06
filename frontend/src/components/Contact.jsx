@@ -186,10 +186,17 @@ const Contact = () => {
         @media (max-width: 992px) {
           .contact-grid {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2rem;
+            text-align: center;
           }
           .contact-form {
-            padding: 2rem;
+            padding: 1.5rem;
+          }
+          .info-items {
+            align-items: center;
+          }
+          .info-item {
+            justify-content: center;
           }
         }
       `}</style>

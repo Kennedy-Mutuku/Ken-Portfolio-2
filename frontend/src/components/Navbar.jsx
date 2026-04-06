@@ -17,18 +17,18 @@ const Navbar = () => {
     { name: 'Home', href: '#' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
-    { name: 'Portfolio', href: '#portfolio' },
+    { name: 'Projects', href: '#portfolio' },
     { name: 'Contact', href: '#contact' },
   ]
 
   return (
     <nav className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       {/* Top Bar */}
-      <div className="top-bar desktop-only">
+      <div className="top-bar">
         <div className="container top-bar-content">
           <div className="top-info">
-            <a href="tel:0740881485"><Phone size={16} /> 0740881485</a>
-            <a href="mailto:mutukukennedy5@gmail.com"><Mail size={16} /> mutukukennedy5@gmail.com</a>
+            <a href="tel:0740881485" className="phone-item"><Phone size={14} /> 0740881485</a>
+            <a href="mailto:mutukukennedy5@gmail.com" className="email-item"><Mail size={14} /> mutukukennedy5@gmail.com</a>
           </div>
           <div className="top-message">
             Available for new creative projects
@@ -71,8 +71,8 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
+      <div className={`mobile-overlay ${isOpen ? 'active' : ''}`} onClick={() => setIsOpen(false)}></div>
       <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
-        <button className="close-btn" onClick={() => setIsOpen(false)}><X size={32} /></button>
         <ul>
           {navLinks.map((link) => (
             <li key={link.name}>
@@ -204,48 +204,73 @@ const Navbar = () => {
           display: none;
         }
 
+        .mobile-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.4);
+          z-index: -2;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .mobile-overlay.active {
+          opacity: 1;
+          visibility: visible;
+        }
+
         .mobile-menu {
           position: fixed;
           top: 0;
-          right: -100%;
-          width: 100%;
-          height: 100vh;
-          background: var(--bg-cream);
-          z-index: 1100;
+          right: 0;
+          transform: translateX(100%);
+          width: 200px;
+          max-width: 60vw;
+          background: var(--primary);
+          z-index: -1;
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
-          transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+          justify-content: flex-start;
+          padding-top: 140px;
+          padding-bottom: 2rem;
+          border-bottom-left-radius: 20px;
+          transition: transform 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+          box-shadow: -5px 10px 20px rgba(0,0,0,0.05);
         }
 
         .mobile-menu.active {
-          right: 0;
-        }
-
-        .close-btn {
-          position: absolute;
-          top: 30px;
-          right: 30px;
-          background: none;
-          border: none;
-          color: var(--text-dark);
-          cursor: pointer;
+          transform: translateX(0);
         }
 
         .mobile-menu ul {
           text-align: center;
           list-style: none;
+          padding: 0;
         }
 
         .mobile-menu li {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
         }
 
         .mobile-menu a {
-          font-size: 2rem;
-          font-weight: 700;
-          color: var(--text-dark);
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: white;
+        }
+
+        .mobile-menu .btn {
+          background-color: white;
+          color: var(--primary);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu .btn:hover {
+          background-color: var(--bg-cream);
+          transform: translateY(-2px);
         }
 
         .mobile-socials {
@@ -253,6 +278,41 @@ const Navbar = () => {
           gap: 2rem;
           justify-content: center;
           margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+          .top-bar {
+            padding: 2px 0;
+          }
+          .top-bar-content {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 2px 15px;
+            padding: 0;
+          }
+          .top-info {
+            display: contents;
+          }
+          .email-item {
+            width: 100%;
+            justify-content: center;
+            order: 1;
+            font-size: 0.85rem;
+          }
+          .phone-item {
+            order: 2;
+            font-size: 0.85rem;
+          }
+          .social-links {
+            order: 3;
+            gap: 10px;
+          }
+          .social-links a {
+            width: 26px;
+            height: 26px;
+          }
         }
 
         @media (max-width: 992px) {

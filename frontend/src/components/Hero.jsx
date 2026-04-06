@@ -52,7 +52,7 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6, ease: "easeInOut" }}
-                  style={{ position: 'absolute', left: 0, color: 'var(--primary)' }}
+                  style={{ position: 'absolute', left: 0, width: '100%', color: 'var(--primary)' }}
                 >
                   {content[index].phrase}
                 </motion.span>
@@ -119,7 +119,8 @@ const Hero = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding-top: 100px;
+          padding-top: 160px;
+          padding-bottom: 60px;
           background: 
             radial-gradient(circle at 90% 10%, rgba(243, 141, 28, 0.08), transparent 40%),
             radial-gradient(circle at 10% 90%, rgba(243, 141, 28, 0.05), transparent 40%);
@@ -276,6 +277,9 @@ const Hero = () => {
         }
 
         @media (max-width: 992px) {
+          .hero {
+            padding-top: 140px;
+          }
           .hero-grid {
             grid-template-columns: 1fr;
             text-align: center;
@@ -287,7 +291,9 @@ const Hero = () => {
           }
           .hero-image {
             order: 1;
-            height: 380px;
+            height: 460px;
+            padding-left: 0;
+            justify-content: center;
           }
           .hero-text p {
             margin: 0 auto 2.5rem;
@@ -300,7 +306,7 @@ const Hero = () => {
           }
           .card-stack {
             max-width: 320px;
-            height: 320px;
+            height: 405px;
             margin: 0 auto;
           }
         }
@@ -310,11 +316,11 @@ const Hero = () => {
             font-size: 1.8rem;
           }
           .hero-image {
-            height: 300px;
+            height: 380px;
           }
           .card-stack {
             max-width: 260px;
-            height: 260px;
+            height: 330px;
           }
         }
       `}</style>
