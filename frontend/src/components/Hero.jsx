@@ -67,14 +67,14 @@ const Hero = () => {
           
           <div className="hero-cta">
             <button className="btn btn-primary">See My Works <ArrowRight size={20} /></button>
-            <button className="btn btn-outline">Get In Touch</button>
+            <button className="btn btn-white">Get In Touch</button>
           </div>
 
           <div className="hero-socials">
-            <a href="https://linkedin.com/in/kennedy-mutuku" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><ExternalLink size={20} /></a>
+            <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><ExternalLink size={20} /></a>
             <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><Link size={20} /></a>
-            <a href="mailto:kennedykioko001@gmail.com" className="social-icon" aria-label="Email"><Mail size={20} /></a>
-            <a href="tel:+254743818314" className="social-icon" aria-label="Phone"><Phone size={20} /></a>
+            <a href="mailto:mutukukennedy5@gmail.com" className="social-icon" aria-label="Email"><Mail size={20} /></a>
+            <a href="tel:0740881485" className="social-icon" aria-label="Phone"><Phone size={20} /></a>
           </div>
         </motion.div>
 

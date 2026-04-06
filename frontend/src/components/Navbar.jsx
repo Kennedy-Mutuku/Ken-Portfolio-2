@@ -34,11 +34,11 @@ const Navbar = () => {
             Available for new creative projects
           </div>
           <div className="social-links">
-            <a href="https://linkedin.com/in/kennedy-mutuku" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <ExternalLink size={16} />
+            <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <Link size={16} />
             </a>
             <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-              <Link size={16} />
+              <ExternalLink size={16} />
             </a>
           </div>
         </div>
@@ -80,8 +80,8 @@ const Navbar = () => {
             </li>
           ))}
           <li className="mobile-socials">
-            <a href="https://linkedin.com/in/kennedy-mutuku" target="_blank" rel="noopener noreferrer"><ExternalLink size={24} /></a>
-            <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer"><Link size={24} /></a>
+            <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer"><Link size={24} /></a>
+            <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer"><ExternalLink size={24} /></a>
           </li>
           <li>
             <button className="btn btn-primary">Hire Me</button>

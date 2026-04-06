@@ -108,15 +108,24 @@ const About = () => {
         }
 
         .tag {
-          padding: 0.5rem 1rem;
-          background: var(--bg-cream);
+          padding: 0.6rem 1.2rem;
+          background: white;
           color: var(--primary);
-          border-radius: 8px;
-          font-size: 0.85rem;
+          border-radius: 50px;
+          font-size: 0.9rem;
           font-weight: 600;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.6rem;
+          box-shadow: var(--shadow-sm);
+          transition: var(--transition);
+          border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tag:hover {
+          transform: translateY(-3px);
+          box-shadow: var(--shadow-md);
+          border-color: var(--primary);
         }
 
         .about-image-col {
@@ -153,13 +162,20 @@ const About = () => {
           position: absolute;
           bottom: -30px;
           right: -20px;
-          background: white;
-          padding: 1.2rem;
-          border-radius: 12px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-          max-width: 320px;
-          border: 1px solid rgba(0,0,0,0.05);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 1.5rem;
+          border-radius: 20px;
+          box-shadow: var(--shadow-lg);
+          max-width: 350px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
           z-index: 10;
+          transition: var(--transition);
+        }
+
+        .card-floating-badge:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
         }
 
         /* Removed years/text styles as they are replaced by a paragraph */

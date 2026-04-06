@@ -57,24 +57,27 @@ const Services = () => {
           border-radius: 20px;
           text-align: center;
           transition: var(--transition);
-          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          box-shadow: var(--shadow-sm);
         }
 
         .service-card:hover {
           transform: translateY(-10px);
-          box-shadow: 0 15px 30px rgba(243, 141, 28, 0.15);
+          box-shadow: var(--shadow-lg);
+          border-color: var(--primary);
         }
 
         .service-icon {
           width: 70px;
           height: 70px;
           background: rgba(243, 141, 28, 0.1);
+          backdrop-filter: blur(5px);
           color: var(--primary);
-          border-radius: 50%;
+          border-radius: 16px;
           display: flex;
           align-items: center;
           justify-content: center;
           margin: 0 auto 1.5rem;
+          border: 1px solid rgba(243, 141, 28, 0.1);
         }
 
         .service-card h4 {

@@ -235,7 +235,7 @@ const Portfolio = () => {
       <style>{`
         .portfolio {
           background-color: var(--bg-cream, #f9f9f9);
-          padding: 5rem 0;
+          padding: 5rem 0 1.5rem 0;
         }
 
         .filter-buttons {
@@ -272,7 +272,7 @@ const Portfolio = () => {
           border-radius: 20px;
           overflow: hidden;
           background: white;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+          box-shadow: var(--shadow-sm);
           transition: all 0.3s ease;
           position: relative;
           cursor: pointer;
@@ -281,7 +281,8 @@ const Portfolio = () => {
 
         .portfolio-card:hover {
           transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          box-shadow: var(--shadow-lg);
+          border-color: var(--primary);
         }
 
         .portfolio-card img {
@@ -360,7 +361,8 @@ const Portfolio = () => {
           border-radius: 24px;
           overflow: hidden;
           position: relative;
-          box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+          box-shadow: var(--shadow-lg);
+          border: 1px solid rgba(255, 255, 255, 0.2);
           animation: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           max-height: calc(100vh - 150px);
           overflow-y: auto;

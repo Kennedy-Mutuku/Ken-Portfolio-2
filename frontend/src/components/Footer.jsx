@@ -23,9 +23,9 @@ const Footer = () => {
         <div className="footer-contact">
           <h4>Contact Info</h4>
           <ul>
-            <li><Phone size={16} /> 0740881485</li>
-            <li><Mail size={16} /> mutukukennedy5@gmail.com</li>
-            <li>Nairobi, Kenya</li>
+            <li><Phone size={16} /> <a href="tel:0740881485">0740881485</a></li>
+            <li><Mail size={16} /> <a href="mailto:mutukukennedy5@gmail.com">mutukukennedy5@gmail.com</a></li>
+            <li>Machakos, Kenya</li>
           </ul>
         </div>
       </div>
@@ -34,7 +34,7 @@ const Footer = () => {
         <div className="container">
           <p>&copy; {new Date().getFullYear()} Kennedy Mutuku. All Rights Reserved.</p>
           <div className="social-links">
-              <a href="https://linkedin.com/in/kennedy-mutuku" target="_blank" rel="noopener noreferrer" className="social-icon">
+              <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer" className="social-icon">
                 <ExternalLink size={20} />
               </a>
               <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer" className="social-icon">
