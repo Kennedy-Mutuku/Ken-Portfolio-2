@@ -1,222 +1,170 @@
 import React from 'react'
-import { motion } from 'framer-motion'
-import { Terminal, Cpu, Layout } from 'lucide-react'
-import kenImg from '../assets/ken.jpg.jpeg';
+import { Link } from 'react-router-dom'
+import kenImg from '../assets/ken stage.jpg';
 
 const About = () => {
   return (
     <section id="about" className="about">
       <div className="container">
-        <div className="section-header">
-          <h2>About <span>Me</span></h2>
-          <div className="underline"></div>
-        </div>
-
-        <div className="about-grid">
-          <div className="about-content">
-            <h3>Hello, I'm Kennedy Kioko Mutuku</h3>
-            <p>
-              I am a Software Engineer specializing in full-stack development (MERN stack), passionate about building scalable, real-world systems that solve meaningful problems. I combine strong technical skills with creativity from photography and videography to deliver both functional and visually engaging digital experiences.
-            </p>
-            <p>
-              I have experience designing and developing systems such as management platforms, booking systems, and automation tools, focusing on efficiency, usability, and reliability. I enjoy turning complex manual processes into simple, automated solutions that improve productivity and user experience.
-            </p>
-            <p>
-              Beyond development, I bring leadership and collaboration skills, having led projects and worked closely with teams to deliver impactful solutions.
-            </p>
-            <p>
-              Whether it's writing clean, maintainable code or creating compelling visuals, I am committed to delivering high-quality, professional results that make a difference.
-            </p>
-            
-            <div className="skill-tags">
-              <span className="tag"><Terminal size={14} /> Automation</span>
-              <span className="tag"><Cpu size={14} /> MERN Stack</span>
-              <span className="tag"><Layout size={14} /> UI/UX Design</span>
+        <div className="about-layout">
+          
+          {/* Left Column: Image with offset background */}
+          <div className="about-image-column">
+            <div className="image-wrapper">
+              <div className="image-bg-block"></div>
+              <img src={kenImg} alt="Kennedy Kioko Mutuku" className="profile-img" />
             </div>
           </div>
 
-          <div className="about-image-col">
-            <motion.div 
-              className="about-image-card"
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <div className="img-wrapper">
-                <img src={kenImg} alt="Kennedy Kioko Mutuku" />
-              </div>
-              <div className="card-floating-badge">
-                <p style={{ fontSize: '0.9rem', lineHeight: '1.4', margin: 0, fontWeight: '500', color: '#444' }}>
-                  I am a results-driven software engineer who builds scalable systems, solves real-world problems, and delivers impactful digital experiences with precision and creativity, backed by strong leadership, effective communication, and confident public speaking abilities.
-                </p>
-              </div>
-            </motion.div>
+          {/* Right Column: Bordered text box */}
+          <div className="about-text-column">
+            <div className="about-content-box">
+              <h2 className="about-heading">ABOUT KENNEDY MUTUKU</h2>
+              
+              <p>
+                Kennedy Mutuku is a Software Engineer, entrepreneur, and digital innovator dedicated to building technology and media solutions that create meaningful impact. As the Founder and CEO of Dominion Softwares Ltd and Dominion Multimedia Group, he leads the development of innovative software systems and creative digital media that empower businesses, institutions, and organizations to embrace digital transformation and communicate with excellence.
+              </p>
+              
+              <Link to="/about" className="read-more-btn">READ MORE</Link>
+            </div>
           </div>
+
         </div>
       </div>
 
       <style>{`
+        :root {
+          --navy-dark: #001333; /* The dark blue from the reference */
+        }
+
         .about {
-          background-color: white;
-          padding: 2.5rem 0 5rem 0;
+          background-color: #fdfdfd;
+          padding: 4rem 0;
+          font-family: 'Inter', sans-serif;
         }
 
-        .section-header {
-          text-align: center;
-          margin-bottom: 2.5rem;
-        }
-
-        .section-header h2 {
-          font-size: 2.5rem;
-          color: var(--text-dark);
-        }
-
-        .section-header span {
-          color: var(--primary);
-        }
-
-        .underline {
-          width: 80px;
-          height: 5px;
-          background: var(--primary);
-          margin: 0.8rem auto 0;
-          border-radius: 10px;
-        }
-
-        .about-grid {
-          display: grid;
-          grid-template-columns: 0.9fr 1.1fr;
-          gap: 5rem;
-          align-items: center;
-        }
-
-        .about-content h3 {
-          font-size: 1.8rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-          margin-bottom: 1.5rem;
-          font-size: 1.05rem;
-          color: #444;
-        }
-
-        .skill-tags {
+        .about-layout {
           display: flex;
-          gap: 1rem;
-          margin-top: 2rem;
-          flex-wrap: wrap;
-        }
-
-        .tag {
-          padding: 0.6rem 1.2rem;
-          background: white;
-          color: var(--primary);
-          border-radius: 50px;
-          font-size: 0.9rem;
-          font-weight: 600;
-          display: flex;
-          align-items: center;
-          gap: 0.6rem;
-          box-shadow: var(--shadow-sm);
-          transition: var(--transition);
-          border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .tag:hover {
-          transform: translateY(-3px);
-          box-shadow: var(--shadow-md);
-          border-color: var(--primary);
-        }
-
-        .about-image-col {
-          display: flex;
+          align-items: stretch;
           justify-content: center;
-          align-items: center;
-        }
-
-        .about-image-card {
-          position: relative;
-          background: var(--bg-cream);
-          padding: 1.5rem;
-          border-radius: 20px;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-          max-width: 450px;
+          gap: 2rem;
+          max-width: 1100px;
           margin: 0 auto;
         }
 
-        .img-wrapper {
-          border-radius: 12px;
-          overflow: hidden;
+        /* Image Column */
+        .about-image-column {
+          flex: 0 0 35%;
+          position: relative;
+          display: flex;
+          align-items: stretch;
+        }
+
+        .image-wrapper {
+          position: relative;
+          width: 100%;
+          padding-left: 20px;
+          padding-bottom: 20px;
+        }
+
+        .image-bg-block {
+          position: absolute;
+          top: 50px;
+          bottom: -15px;
+          left: -15px;
+          right: 30px;
+          background-color: var(--navy-dark);
+          z-index: 0;
+        }
+
+        .profile-img {
+          position: relative;
           width: 100%;
           height: auto;
-        }
-
-        .img-wrapper img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+          z-index: 1;
           display: block;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .card-floating-badge {
-          position: absolute;
-          bottom: -30px;
-          right: -20px;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(10px);
-          padding: 1.5rem;
-          border-radius: 20px;
-          box-shadow: var(--shadow-lg);
-          max-width: 350px;
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          z-index: 10;
-          transition: var(--transition);
+        /* Text Column */
+        .about-text-column {
+          flex: 0 0 65%;
+          display: flex;
+          align-items: stretch;
         }
 
-        .card-floating-badge:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        .about-content-box {
+          border: 1px solid var(--navy-dark);
+          padding: 2.5rem 3rem;
+          background: #ffffff;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
 
-        /* Removed years/text styles as they are replaced by a paragraph */
+        .about-heading {
+          font-size: 1.5rem;
+          color: var(--navy-dark);
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          margin-bottom: 1.5rem;
+          font-weight: 800;
+        }
 
+        .about-content-box p {
+          font-size: 1.05rem;
+          line-height: 1.8;
+          color: #4a4a4a;
+          margin-bottom: 1.5rem;
+        }
+
+        .read-more-btn {
+          align-self: flex-start;
+          margin-top: 0.5rem;
+          padding: 0.7rem 1.5rem;
+          background: transparent;
+          border: 1px solid var(--navy-dark);
+          color: var(--navy-dark);
+          font-size: 0.8rem;
+          font-weight: 600;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          text-decoration: none;
+          display: inline-block;
+        }
+
+        .read-more-btn:hover {
+          background: var(--navy-dark);
+          color: #ffffff;
+        }
+
+        /* Responsive Design */
         @media (max-width: 992px) {
-          .about {
-            padding: 1.5rem 0 4rem 0;
+          .about-layout {
+            flex-direction: column;
+            gap: 4rem;
           }
-          .section-header {
-            margin-bottom: 1.5rem;
+          
+          .about-image-column {
+            max-width: 500px;
+            margin: 0 auto;
           }
-          .about-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-            text-align: center;
-          }
-          .skill-tags {
-            justify-content: center;
-          }
-          .about-image-card {
-            margin-bottom: 2rem;
-          }
-          .about-content h3 {
-            font-size: 1.6rem;
+
+          .about-content-box {
+            padding: 2.5rem 2rem;
           }
         }
 
         @media (max-width: 600px) {
-          .section-header {
-            margin-bottom: 1rem;
+          .about-content-box {
+            padding: 2rem 1.5rem;
           }
-          .about-grid {
-            gap: 2rem;
-          }
-          .card-floating-badge {
-            right: auto;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -35px;
-            width: 90%;
-            max-width: 350px;
+          
+          .about-heading {
+            font-size: 1.3rem;
           }
         }
       `}</style>

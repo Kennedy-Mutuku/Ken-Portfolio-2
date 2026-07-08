@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { Menu, X, Phone, Mail, ExternalLink, Link } from 'lucide-react'
+import logoImg from '../assets/Kennedy Mutuku logo.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -13,12 +15,15 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+
   const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Projects', href: '#portfolio' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/', isRoute: true },
+    { name: 'About', href: '/about', isRoute: true },
+    { name: 'Services', href: '#services', isRoute: false },
+    { name: 'Projects', href: '#portfolio', isRoute: false },
+    { name: 'Contact', href: '#contact', isRoute: false },
   ]
 
   return (
@@ -47,15 +52,22 @@ const Navbar = () => {
       {/* Main Navbar */}
       <div className="main-nav">
         <div className="container nav-content">
-          <a href="#" className="logo">
-            KENNEDY <span>MUTUKU</span>
+          <a href="#" className="logo-link">
+            <img src={logoImg} alt="Kennedy Mutuku Logo" className="header-logo" />
+            <div className="logo-text">
+              KENNEDY <span>MUTUKU</span>
+            </div>
           </a>
 
           {/* Desktop Menu */}
           <ul className="nav-links desktop-only">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a href={link.href}>{link.name}</a>
+                {link.isRoute ? (
+                  <RouterLink to={link.href}>{link.name}</RouterLink>
+                ) : (
+                  <a href={isHomePage ? link.href : `/${link.href}`}>{link.name}</a>
+                )}
               </li>
             ))}
             <li>
@@ -76,7 +88,11 @@ const Navbar = () => {
         <ul>
           {navLinks.map((link) => (
             <li key={link.name}>
-              <a href={link.href} onClick={() => setIsOpen(false)}>{link.name}</a>
+              {link.isRoute ? (
+                <RouterLink to={link.href} onClick={() => setIsOpen(false)}>{link.name}</RouterLink>
+              ) : (
+                <a href={isHomePage ? link.href : `/${link.href}`} onClick={() => setIsOpen(false)}>{link.name}</a>
+              )}
             </li>
           ))}
           <li className="mobile-socials">
@@ -165,15 +181,39 @@ const Navbar = () => {
           align-items: center;
         }
 
-        .logo {
+        .logo-link {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          text-decoration: none;
+        }
+
+        .logo-text {
           font-size: 1.3rem;
           font-weight: 800;
           color: var(--text-dark);
           letter-spacing: -0.5px;
         }
 
-        .logo span {
+        .logo-text span {
           color: var(--primary);
+        }
+
+        .header-logo {
+          height: 90px;
+          width: auto;
+          object-fit: contain;
+          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.08));
+        }
+
+        .navbar-wrapper.scrolled .header-logo {
+          height: 60px;
+        }
+
+        .header-logo:hover {
+          transform: scale(1.08) translateY(-2px);
+          filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.15));
         }
 
         .nav-links {
@@ -331,8 +371,11 @@ const Navbar = () => {
           .main-nav {
             padding: 12px 0;
           }
-           .logo {
-            font-size: 1.3rem;
+           .header-logo {
+            height: 65px;
+          }
+           .logo-text {
+            font-size: 1.1rem;
           }
         }
       `}</style>
