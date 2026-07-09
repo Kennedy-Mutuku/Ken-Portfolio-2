@@ -1,7 +1,21 @@
 import React from 'react'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { ExternalLink, Link, Mail, Phone } from 'lucide-react'
 
 const Footer = () => {
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+
+  const navLinks = [
+    { name: 'Home', href: '/', isRoute: true },
+    { name: 'About Ken', href: '/about', isRoute: true },
+    { name: 'Featuring', href: '/featuring', isRoute: true },
+    { name: 'Leadership', href: '/leadership', isRoute: true },
+    { name: 'Education', href: '/education', isRoute: true },
+    { name: 'Projects', href: '#portfolio', isRoute: false },
+    { name: 'Contact', href: '#contact', isRoute: false },
+  ]
+
   return (
     <footer className="footer">
       <div className="container footer-grid">
@@ -13,10 +27,24 @@ const Footer = () => {
         <div className="footer-links">
           <h4>Navigation</h4>
           <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                {link.isRoute ? (
+                  <RouterLink 
+                    to={link.href}
+                    onClick={() => {
+                      if (location.pathname === link.href) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {link.name}
+                  </RouterLink>
+                ) : (
+                  <a href={isHomePage ? link.href : `/${link.href}`}>{link.name}</a>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
 
