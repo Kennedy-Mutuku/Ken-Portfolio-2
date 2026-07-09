@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import Navbar from '../components/Navbar'
+import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
 // Asset imports
@@ -149,15 +150,9 @@ const FeaturingPage = () => {
   return (
     <>
     <Navbar />
+    <PageHeader title="Featuring" />
     <section id="featuring" className="featuring">
       <div className="featuring-container">
-
-        {/* Section Title */}
-        <div className="featuring-header">
-          <h2><span>Featuring</span></h2>
-          <div className="underline"></div>
-          <p className="featuring-subtitle">A snapshot of my professional experience and career journey</p>
-        </div>
 
         {/* Tab Content */}
         <div className="tab-content">
@@ -200,7 +195,7 @@ const FeaturingPage = () => {
       <style>{`
         .featuring {
           background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%);
-          padding: 5rem 0;
+          padding: 4rem 0 5rem;
           font-family: 'Inter', sans-serif;
         }
 
@@ -208,36 +203,6 @@ const FeaturingPage = () => {
           max-width: 1100px;
           margin: 0 auto;
           padding: 0 2rem;
-        }
-
-        /* Header */
-        .featuring-header {
-          text-align: center;
-          margin-bottom: 3rem;
-        }
-
-        .featuring-header h2 {
-          font-size: 2.5rem;
-          font-weight: 800;
-          color: var(--text-dark, #1a1a1a);
-        }
-
-        .featuring-header span {
-          color: var(--primary, #f38d1c);
-        }
-
-        .underline {
-          width: 80px;
-          height: 4px;
-          background: var(--primary, #f38d1c);
-          margin: 0.8rem auto 1rem;
-          border-radius: 2px;
-        }
-
-        .featuring-subtitle {
-          color: #666;
-          font-size: 1rem;
-          margin-top: 0.5rem;
         }
 
         /* Tabs */
@@ -569,9 +534,6 @@ const FeaturingPage = () => {
           .featuring {
             padding: 3.5rem 0;
           }
-          .featuring-header h2 {
-            font-size: 2.2rem;
-          }
           .exp-card {
             flex-direction: column;
             gap: 1rem;
@@ -628,14 +590,6 @@ const FeaturingPage = () => {
         }
 
         @media (max-width: 480px) {
-          .featuring-header h2 {
-            font-size: 1.8rem;
-          }
-          
-          .featuring-subtitle {
-            font-size: 0.9rem;
-          }
-          
           .featuring-tabs {
             gap: 0.4rem;
             margin-bottom: 2rem;

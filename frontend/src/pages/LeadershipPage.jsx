@@ -1,30 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Award, Building, Clapperboard, Code, Megaphone, Monitor, CircleDollarSign, Briefcase, BookOpen, Settings } from 'lucide-react'
 import Navbar from '../components/Navbar'
+import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
 const LeadershipPage = () => {
   const leadership = [
-    { role: 'Chairperson & Co-founder', org: 'Young Friends Association (YFA)', period: 'Jan 2019 – Present', icon: '🌟' },
-    { role: 'Founder & CEO', org: 'Dominion Softwares', period: 'Jan 2025 – Present', icon: '🏢' },
-    { role: 'Founder & CEO', org: 'Dominion Multimedia Group', period: 'Jan 2025 – Present', icon: '🎬' },
-    { role: 'Lead Developer', org: 'KSUCU-MC', period: 'Nov 2025 – Apr 2026', icon: '💻' },
-    { role: 'Publicity Secretary', org: 'Kisii University Christian Union', period: 'Sep 2024 – Sep 2025', icon: '📢' },
-    { role: 'ICT Board Chairperson', org: 'Kisii University Christian Union', period: 'Nov 2023 – Nov 2024', icon: '🖥️' },
-    { role: 'Treasurer', org: 'Christian Minds Committee', period: '2023 – 2024', icon: '💰' },
+    { role: 'Lead Developer', org: 'KSUCU-MC', period: 'Nov 2025 – Apr 2026', icon: <Code size={24} className="leader-svg" /> },
+    { role: 'Founder & CEO', org: 'Dominion Softwares', period: 'Jan 2025 – Present', icon: <Building size={24} className="leader-svg" /> },
+    { role: 'Founder & CEO', org: 'Dominion Multimedia Group', period: 'Jan 2025 – Present', icon: <Clapperboard size={24} className="leader-svg" /> },
+    { role: 'Publicity Secretary', org: 'Kisii University Christian Union', period: 'Sep 2024 – Sep 2025', icon: <Megaphone size={24} className="leader-svg" /> },
+    { role: 'Software Engineering Attachment', org: 'Machakos Level 5 Hospital', period: 'May 2024 - Aug 2024', icon: <Briefcase size={24} className="leader-svg" /> },
+    { role: 'ICT Board Chairperson', org: 'Kisii University Christian Union', period: 'Nov 2023 – Nov 2024', icon: <Monitor size={24} className="leader-svg" /> },
+    { role: 'Treasurer', org: 'Christian Minds Committee', period: '2023 – 2024', icon: <CircleDollarSign size={24} className="leader-svg" /> },
+    { role: 'Mathematics & Computer Teacher', org: 'Kyangala Boys High School', period: 'Apr 2023 - Aug 2023', icon: <BookOpen size={24} className="leader-svg" /> },
+    { role: 'ICT Support', org: 'Sequest Capital Stove Company', period: 'May 2022 - Aug 2022', icon: <Settings size={24} className="leader-svg" /> },
+    { role: 'Chairperson & Co-founder', org: 'Young Friends Association (YFA)', period: 'Jan 2019 – Present', icon: <Award size={24} className="leader-svg" /> },
   ]
 
   return (
     <>
     <Navbar />
+    <PageHeader title="Leadership" />
     <section className="leadership-page">
       <div className="leadership-container">
-        <div className="leadership-header">
-          <h2><span>Leadership</span></h2>
-          <div className="underline"></div>
-          <p className="leadership-subtitle">My leadership journey and organizational roles</p>
-        </div>
 
         <div className="leadership-grid">
           {leadership.map((item, i) => (
@@ -47,17 +47,13 @@ const LeadershipPage = () => {
       </div>
       
       <style>{`
-        .leadership-page { background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%); padding: 8rem 0 5rem 0; font-family: 'Inter', sans-serif; min-height: 80vh; }
+        .leadership-page { background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%); padding: 4rem 0 5rem 0; font-family: 'Inter', sans-serif; min-height: 80vh; }
         .leadership-container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        .leadership-header { text-align: center; margin-bottom: 3rem; }
-        .leadership-header h2 { font-size: 2.5rem; font-weight: 800; color: #1a1a1a; }
-        .leadership-header span { color: var(--primary, #f38d1c); }
-        .underline { width: 80px; height: 4px; background: var(--primary, #f38d1c); margin: 0.8rem auto 1rem; border-radius: 2px; }
-        .leadership-subtitle { color: #666; font-size: 1rem; margin-top: 0.5rem; }
         .leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
         .leader-card { background: white; border-radius: 14px; padding: 1.5rem; display: flex; align-items: center; gap: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease; }
         .leader-card:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); border-color: rgba(243,141,28,0.3); }
         .leader-icon { font-size: 2rem; width: 55px; height: 55px; background: rgba(243,141,28,0.08); border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .leader-svg { color: var(--primary, #f38d1c); stroke-width: 1.5; }
         .leader-info { flex: 1; }
         .leader-role { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 0.15rem; }
         .leader-org { font-size: 0.85rem; color: #666; margin-bottom: 0.3rem; }
@@ -67,11 +63,9 @@ const LeadershipPage = () => {
         .back-home-btn:hover { background: var(--primary, #f38d1c); color: #ffffff; }
 
         @media (max-width: 768px) {
-          .leadership-page { padding: 6rem 0 3.5rem 0; }
-          .leadership-header h2 { font-size: 2.2rem; }
+          .leadership-page { padding: 3.5rem 0; }
         }
         @media (max-width: 480px) {
-          .leadership-header h2 { font-size: 1.8rem; }
           .leader-card { padding: 1.25rem; }
           .leader-icon { width: 45px; height: 45px; font-size: 1.5rem; }
         }

@@ -3,20 +3,16 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import kenImg from '../assets/ken stage.jpg'
 import Navbar from '../components/Navbar'
+import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
 const AboutPage = () => {
   return (
     <>
       <Navbar />
+      <PageHeader title="About Kennedy Mutuku" />
       <section className="about-page">
         <div className="about-page-container">
-
-          {/* Page Header */}
-          <div className="about-page-header">
-            <h1>ABOUT KENNEDY MUTUKU</h1>
-            <div className="header-accent"></div>
-          </div>
 
           {/* Main Content */}
           <div className="about-page-layout">
@@ -64,7 +60,7 @@ const AboutPage = () => {
 
         <style>{`
           .about-page {
-            padding-top: 140px;
+            padding-top: 4rem;
             padding-bottom: 5rem;
             background: #fdfdfd;
             min-height: 100vh;
@@ -75,28 +71,6 @@ const AboutPage = () => {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 2rem;
-          }
-
-          /* Header */
-          .about-page-header {
-            text-align: center;
-            margin-bottom: 4rem;
-          }
-
-          .about-page-header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #001333;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-          }
-
-          .header-accent {
-            width: 80px;
-            height: 4px;
-            background: #001333;
-            margin: 1rem auto 0;
-            border-radius: 2px;
           }
 
           /* Layout */
@@ -203,11 +177,7 @@ const AboutPage = () => {
 
           @media (max-width: 600px) {
             .about-page {
-              padding-top: 120px;
-            }
-
-            .about-page-header h1 {
-              font-size: 1.5rem;
+              padding-top: 3rem;
             }
 
             .about-page-text-col p {

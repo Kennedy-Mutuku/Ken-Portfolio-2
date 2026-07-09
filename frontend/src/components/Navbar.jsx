@@ -65,6 +65,7 @@ const Navbar = () => {
                 {link.isRoute ? (
                   <RouterLink 
                     to={link.href}
+                    className={location.pathname === link.href ? 'active-link' : ''}
                     onClick={() => {
                       if (location.pathname === link.href) {
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -78,9 +79,6 @@ const Navbar = () => {
                 )}
               </li>
             ))}
-            <li>
-              <button className="btn btn-primary">Hire Me</button>
-            </li>
           </ul>
 
           {/* Mobile Toggle */}
@@ -99,6 +97,7 @@ const Navbar = () => {
               {link.isRoute ? (
                 <RouterLink 
                   to={link.href} 
+                  className={location.pathname === link.href ? 'active-mobile-link' : ''}
                   onClick={() => {
                     setIsOpen(false);
                     if (location.pathname === link.href) {
@@ -116,9 +115,6 @@ const Navbar = () => {
           <li className="mobile-socials">
             <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer"><Link size={24} /></a>
             <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer"><ExternalLink size={24} /></a>
-          </li>
-          <li>
-            <button className="btn btn-primary">Hire Me</button>
           </li>
         </ul>
       </div>
@@ -241,14 +237,28 @@ const Navbar = () => {
         }
 
         .nav-links a {
+          position: relative;
           font-weight: 600;
           color: var(--text-dark);
-          font-size: 0.9rem;
+          font-size: 0.95rem;
           transition: 0.3s;
+          padding-bottom: 6px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active-link {
           color: var(--primary);
+        }
+        
+        .nav-links a.active-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background-color: var(--primary);
+          border-radius: 4px;
         }
 
         .menu-btn {

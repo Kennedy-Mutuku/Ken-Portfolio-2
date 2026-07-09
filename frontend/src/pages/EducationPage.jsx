@@ -2,24 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import Navbar from '../components/Navbar'
+import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
-// Asset imports
-import ksucuImg from '../assets/ksucu-mc1.jpeg'
-import ksucuGroup from '../assets/ksucu-mc 2.png'
-import kenStage from '../assets/ken stage.jpg'
+// No asset imports needed here for the photo strip
 
 const EducationPage = () => {
   return (
     <>
     <Navbar />
+    <PageHeader title="Education" />
     <section className="education-page">
       <div className="education-container">
-        <div className="education-header">
-          <h2><span>Education</span></h2>
-          <div className="underline"></div>
-          <p className="education-subtitle">My academic background and qualifications</p>
-        </div>
 
         <div className="education-section">
           <div className="edu-card">
@@ -38,12 +32,6 @@ const EducationPage = () => {
               </p>
             </div>
           </div>
-
-          <div className="edu-photo-strip">
-            <img src={ksucuImg} alt="University life" />
-            <img src={ksucuGroup} alt="KSUCU team" />
-            <img src={kenStage} alt="Kennedy speaking" />
-          </div>
         </div>
 
         <div className="back-home-wrapper">
@@ -54,13 +42,8 @@ const EducationPage = () => {
       </div>
       
       <style>{`
-        .education-page { background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%); padding: 8rem 0 5rem 0; font-family: 'Inter', sans-serif; min-height: 80vh; }
+        .education-page { background: linear-gradient(180deg, #fff 0%, var(--bg-cream) 100%); padding: 4rem 0 5rem 0; font-family: 'Inter', sans-serif; min-height: 80vh; }
         .education-container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-        .education-header { text-align: center; margin-bottom: 3rem; }
-        .education-header h2 { font-size: 2.5rem; font-weight: 800; color: #1a1a1a; }
-        .education-header span { color: var(--primary, #f38d1c); }
-        .underline { width: 80px; height: 4px; background: var(--primary, #f38d1c); margin: 0.8rem auto 1rem; border-radius: 2px; }
-        .education-subtitle { color: #666; font-size: 1rem; margin-top: 0.5rem; }
         
         .education-section { display: flex; flex-direction: column; gap: 2.5rem; }
         .edu-card { display: flex; gap: 2rem; background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.05); }
@@ -72,29 +55,18 @@ const EducationPage = () => {
         .edu-degree { font-size: 1.4rem; font-weight: 800; color: #1a1a1a; margin: 0.4rem 0 0.2rem; }
         .edu-institution { font-size: 1rem; font-weight: 600; color: #555; margin-bottom: 1rem; }
         .edu-desc { font-size: 0.95rem; color: #666; line-height: 1.8; }
-        
-        .edu-photo-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; border-radius: 16px; overflow: hidden; }
-        .edu-photo-strip img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; transition: transform 0.4s ease; }
-        .edu-photo-strip img:hover { transform: scale(1.03); }
 
         .back-home-wrapper { margin-top: 4rem; text-align: center; }
         .back-home-btn { display: inline-flex; align-items: center; gap: 8px; padding: 0.8rem 2rem; background: transparent; border: 1.5px solid var(--primary, #f38d1c); color: var(--primary, #f38d1c); font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; text-decoration: none; transition: all 0.3s ease; border-radius: 50px; cursor: pointer; }
         .back-home-btn:hover { background: var(--primary, #f38d1c); color: #ffffff; }
 
-        @media (max-width: 992px) {
-          .edu-photo-strip img { height: 160px; }
-        }
         @media (max-width: 768px) {
-          .education-page { padding: 6rem 0 3.5rem 0; }
-          .education-header h2 { font-size: 2.2rem; }
+          .education-page { padding: 3.5rem 0; }
           .edu-card { flex-direction: column; gap: 1.25rem; padding: 2rem 1.5rem; }
           .edu-icon-col { flex-direction: row; align-items: center; gap: 1rem; flex: unset; }
           .edu-line { display: none; }
-          .edu-photo-strip { grid-template-columns: 1fr; gap: 0.8rem; }
-          .edu-photo-strip img { height: 200px; }
         }
         @media (max-width: 480px) {
-          .education-header h2 { font-size: 1.8rem; }
           .edu-degree { font-size: 1.2rem; }
         }
       `}</style>
