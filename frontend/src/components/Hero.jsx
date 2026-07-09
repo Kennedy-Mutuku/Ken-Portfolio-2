@@ -6,7 +6,7 @@ const content = [
   { phrase: "Your Vision, My Dedication.", img: "/src/assets/ken.jpg.jpeg" },
   { phrase: "Moments Captured, Forever Vivid.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.51.35 AM.jpeg" },
   { phrase: "Precision Code, Timely Delivery.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.52.06 AM.jpeg" },
-  { phrase: "Industrious Soul, Creative Mind.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.52.30 AM.jpeg", position: "top" },
+  { phrase: "Industrious Soul, Creative Mind.", img: "/src/assets/kennnnn.jpg", position: "center 10%" },
   { phrase: "Always on Time, Always Exceptional.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg" },
   { phrase: "Excellence, Crafted with Care.", img: "/src/assets/ken.jpg.jpeg" }
 ]

@@ -20,8 +20,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', href: '/', isRoute: true },
-    { name: 'About', href: '/about', isRoute: true },
-    { name: 'Services', href: '#services', isRoute: false },
+    { name: 'About Ken', href: '/about', isRoute: true },
+    { name: 'Featuring', href: '#featuring', isRoute: false },
     { name: 'Projects', href: '#portfolio', isRoute: false },
     { name: 'Contact', href: '#contact', isRoute: false },
   ]
@@ -34,9 +34,6 @@ const Navbar = () => {
           <div className="top-info">
             <a href="tel:0740881485" className="phone-item"><Phone size={14} /> 0740881485</a>
             <a href="mailto:mutukukennedy5@gmail.com" className="email-item"><Mail size={14} /> mutukukennedy5@gmail.com</a>
-          </div>
-          <div className="top-message">
-            Available for new creative projects
           </div>
           <div className="social-links">
             <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
