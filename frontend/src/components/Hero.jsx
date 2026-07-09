@@ -66,8 +66,12 @@ const Hero = () => {
           </p>
           
           <div className="hero-cta">
-            <button className="btn btn-primary">See My Works <ArrowRight size={20} /></button>
-            <button className="btn btn-white">Get In Touch</button>
+            <a href="#portfolio" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
+              See My Works <ArrowRight size={20} />
+            </a>
+            <a href="#contact" className="btn btn-white" style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
+              Get In Touch
+            </a>
           </div>
 
           <div className="hero-socials">

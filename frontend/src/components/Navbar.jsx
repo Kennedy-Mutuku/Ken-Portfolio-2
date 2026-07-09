@@ -21,7 +21,9 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/', isRoute: true },
     { name: 'About Ken', href: '/about', isRoute: true },
-    { name: 'Featuring', href: '#featuring', isRoute: false },
+    { name: 'Featuring', href: '/featuring', isRoute: true },
+    { name: 'Leadership', href: '/leadership', isRoute: true },
+    { name: 'Education', href: '/education', isRoute: true },
     { name: 'Projects', href: '#portfolio', isRoute: false },
     { name: 'Contact', href: '#contact', isRoute: false },
   ]
@@ -61,7 +63,16 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <li key={link.name}>
                 {link.isRoute ? (
-                  <RouterLink to={link.href}>{link.name}</RouterLink>
+                  <RouterLink 
+                    to={link.href}
+                    onClick={() => {
+                      if (location.pathname === link.href) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {link.name}
+                  </RouterLink>
                 ) : (
                   <a href={isHomePage ? link.href : `/${link.href}`}>{link.name}</a>
                 )}
@@ -86,7 +97,17 @@ const Navbar = () => {
           {navLinks.map((link) => (
             <li key={link.name}>
               {link.isRoute ? (
-                <RouterLink to={link.href} onClick={() => setIsOpen(false)}>{link.name}</RouterLink>
+                <RouterLink 
+                  to={link.href} 
+                  onClick={() => {
+                    setIsOpen(false);
+                    if (location.pathname === link.href) {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  {link.name}
+                </RouterLink>
               ) : (
                 <a href={isHomePage ? link.href : `/${link.href}`} onClick={() => setIsOpen(false)}>{link.name}</a>
               )}

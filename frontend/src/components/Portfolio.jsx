@@ -235,7 +235,7 @@ const Portfolio = () => {
       <style>{`
         .portfolio {
           background-color: var(--bg-cream, #f9f9f9);
-          padding: 5rem 0 1.5rem 0;
+          padding: 2rem 0 1.5rem 0;
         }
 
         .filter-buttons {
