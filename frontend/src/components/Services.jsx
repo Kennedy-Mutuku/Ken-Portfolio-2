@@ -14,13 +14,13 @@ const Services = () => {
     { 
       id: 'dominion',
       title: 'Dominion Softwares', 
-      role: 'Founder & CEO', 
+      role: 'Founder & Chief Executive Officer (CEO)', 
       period: '2025 - Present', 
       img: dominionLogo, 
       imgStyle: 'contain',
       icon: <Terminal size={20} />,
       colSpan: 'col-span-2',
-      color: 'gradient-orange'
+      color: 'solid-dark'
     },
     { 
       id: 'ksucu-mc',
