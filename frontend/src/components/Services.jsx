@@ -179,16 +179,15 @@ const Services = () => {
         .solid-light { background: #ffffff; }
         .solid-cream { background: #faf9f6; }
 
-        /* Background Image Hover Effects */
         .bento-bg-img {
           position: absolute;
           top: 0; left: 0; right: 0; bottom: 0;
           z-index: 1;
-          opacity: 0.05;
+          opacity: 0.35;
           transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
-        .solid-dark .bento-bg-img { opacity: 0.15; }
+        .solid-dark .bento-bg-img { opacity: 0.45; }
 
         .bento-bg-img img {
           width: 100%;
