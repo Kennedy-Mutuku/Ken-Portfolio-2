@@ -1,350 +1,188 @@
 import React from 'react'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
-import { ExternalLink, Link, Mail, Phone, ArrowUpRight } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { Link as RouterLink } from 'react-router-dom'
+import { MapPin, Mail, Star, Image as ImageIcon, Youtube, Facebook, Twitter, Instagram } from 'lucide-react'
 
 const Footer = () => {
-  const location = useLocation()
-  const isHomePage = location.pathname === '/'
-
-  const navLinks = [
-    { name: 'Home', href: '/', isRoute: true },
-    { name: 'About Ken', href: '/about', isRoute: true },
-    { name: 'Featuring', href: '/featuring', isRoute: true },
-    { name: 'Leadership', href: '/leadership', isRoute: true },
-    { name: 'Gallery', href: '/gallery', isRoute: true },
-    { name: 'Education', href: '/education', isRoute: true },
-  ]
-
   return (
-    <footer className="footer-premium">
-      <div className="watermark-container">
-        <h1 className="footer-watermark">KENNEDY</h1>
-      </div>
-      
-      <div className="container footer-premium-content">
+    <footer className="jk-footer">
+      <div className="container jk-footer-container">
         
-        {/* Top CTA Section */}
-        <motion.div 
-          className="footer-cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          <h2 className="cta-heading">Ready to create<br/>something <span className="highlight">extraordinary?</span></h2>
-          <a href="mailto:mutukukennedy5@gmail.com" className="cta-premium-btn">
-            Let's Work Together <ArrowUpRight size={20} />
-          </a>
-        </motion.div>
+        {/* Section 1: Bio */}
+        <div className="jk-footer-section">
+          <h2 className="jk-footer-title">KENNEDY MUTUKU</h2>
+          <p className="jk-footer-bio">
+            Kennedy Mutuku is a celebrated Software Engineer and visual creative, best known for his 
+            dynamic leadership and innovative software architectures. An award-winning professional, 
+            he has worked with major institutions, inspiring audiences with his technical presence 
+            and insightful problem-solving.
+          </p>
+        </div>
 
-        <div className="premium-footer-divider"></div>
+        {/* Section 2: Contact */}
+        <div className="jk-footer-section">
+          <h3 className="jk-footer-heading">Contact</h3>
+          <ul className="jk-footer-list">
+            <li>
+              <MapPin size={18} className="jk-icon" />
+              <span>Nairobi, Kenya</span>
+            </li>
+            <li>
+              <Mail size={18} className="jk-icon" />
+              <a href="mailto:mutukukennedy5@gmail.com">mutukukennedy5@gmail.com</a>
+            </li>
+          </ul>
+        </div>
 
-        {/* Links Section */}
-        <div className="footer-premium-grid">
-          <div className="footer-brand-premium">
-            <a href="#" className="logo">KENNEDY <span>MUTUKU</span></a>
-            <p>Automating the repetitive, capturing the unforgettable. Professional Software Engineering and Visual Creative services.</p>
-          </div>
-          
-          <div className="footer-links-premium">
-            <h4>Quick Explore</h4>
-            <ul>
-              {navLinks.map((link) => (
-                <li key={link.name}>
-                  {link.isRoute ? (
-                    <RouterLink 
-                      to={link.href}
-                      onClick={() => {
-                        if (location.pathname === link.href) {
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
-                      }}
-                    >
-                      {link.name}
-                    </RouterLink>
-                  ) : (
-                    <a href={isHomePage ? link.href : `/${link.href}`}>{link.name}</a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
+        {/* Section 3: Quick Links */}
+        <div className="jk-footer-section">
+          <h3 className="jk-footer-heading">Quick Links</h3>
+          <ul className="jk-footer-list">
+            <li>
+              <Star size={18} className="jk-icon highlight-icon" />
+              <RouterLink to="/about">About Ken</RouterLink>
+            </li>
+            <li>
+              <ImageIcon size={18} className="jk-icon highlight-icon" />
+              <RouterLink to="/gallery">Gallery</RouterLink>
+            </li>
+            <li>
+              <Youtube size={18} className="jk-icon highlight-icon" />
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">Subscribe On Youtube</a>
+            </li>
+          </ul>
+        </div>
 
-          <div className="footer-contact-premium">
-            <h4>Direct Contact</h4>
-            <ul>
-              <li>
-                <span className="contact-icon"><Phone size={16} /></span>
-                <a href="tel:0740881485">+254 740 881 485</a>
-              </li>
-              <li>
-                <span className="contact-icon"><Mail size={16} /></span>
-                <a href="mailto:mutukukennedy5@gmail.com">mutukukennedy5@gmail.com</a>
-              </li>
-              <li className="location">Machakos, Kenya</li>
-            </ul>
+        {/* Section 4: Social Media */}
+        <div className="jk-footer-section">
+          <h3 className="jk-footer-heading">Social Media</h3>
+          <div className="jk-social-icons">
+            <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
+            <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
+            <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
+            <a href="#" aria-label="Youtube"><Youtube size={20} /></a>
           </div>
         </div>
-        
-        {/* Bottom Bar */}
-        <div className="footer-bottom-premium">
-          <p>&copy; {new Date().getFullYear()} Kennedy Mutuku. Built with excellence.</p>
-          <div className="social-links-premium">
-            <a href="https://www.linkedin.com/in/kennedykmutuku/" target="_blank" rel="noopener noreferrer" className="social-icon">
-              LinkedIn
-            </a>
-            <span className="dot">•</span>
-            <a href="https://github.com/Kennedy-Mutuku" target="_blank" rel="noopener noreferrer" className="social-icon">
-              GitHub
-            </a>
-          </div>
+
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="jk-footer-bottom">
+        <div className="container">
+          <p>Website Designed By Dominion Softwares Tel: +254 740 881 485</p>
         </div>
       </div>
 
       <style>{`
-        .footer-premium {
-          background-color: #050505;
+        .jk-footer {
+          background-color: #051329; /* Deep blue from screenshot */
           color: #ffffff;
-          position: relative;
-          overflow: hidden;
-          padding-top: 6rem;
-        }
-
-        .watermark-container {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          overflow: hidden;
-          pointer-events: none;
-          z-index: 0;
-          display: flex;
-          justify-content: center;
-        }
-
-        .footer-watermark {
           font-family: 'Inter', sans-serif;
-          font-size: 25vw;
-          font-weight: 900;
-          color: rgba(255, 255, 255, 0.02);
-          margin: 0;
-          line-height: 0.8;
-          white-space: nowrap;
-          transform: translateY(-20%);
+          padding-top: 4rem;
         }
 
-        .footer-premium-content {
-          position: relative;
-          z-index: 1;
-        }
-
-        .footer-cta {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          padding-bottom: 4rem;
-        }
-
-        .cta-heading {
-          font-family: 'Inter', sans-serif;
-          font-size: 3.5rem;
-          line-height: 1.1;
-          font-weight: 800;
-          letter-spacing: -1px;
-        }
-
-        .cta-heading .highlight {
-          color: var(--primary, #f38d1c);
-          font-style: italic;
-        }
-
-        .cta-premium-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 15px;
-          padding: 1.2rem 2.5rem;
-          background: #ffffff;
-          color: #000000;
-          font-family: 'Inter', sans-serif;
-          font-weight: 700;
-          font-size: 1rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          border-radius: 50px;
-          text-decoration: none;
-          transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        .cta-premium-btn:hover {
-          background: var(--primary, #f38d1c);
-          color: #ffffff;
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(243, 141, 28, 0.3);
-        }
-
-        .premium-footer-divider {
-          height: 1px;
-          background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
-          margin-bottom: 5rem;
-        }
-
-        .footer-premium-grid {
+        .jk-footer-container {
           display: grid;
-          grid-template-columns: 2fr 1fr 1fr;
-          gap: 4rem;
-          margin-bottom: 4rem;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 3rem;
+          padding-bottom: 3rem;
         }
 
-        .footer-brand-premium .logo {
-          color: white;
-          font-family: 'Inter', sans-serif;
-          font-size: 1.8rem;
-          font-weight: 800;
-          letter-spacing: 2px;
-          margin-bottom: 1.5rem;
-          display: block;
+        .jk-footer-section {
+          display: flex;
+          flex-direction: column;
         }
 
-        .footer-brand-premium .logo span {
-          font-weight: 300;
-        }
-
-        .footer-brand-premium p {
-          color: #888;
-          font-size: 1.05rem;
-          line-height: 1.6;
-          max-width: 350px;
-        }
-
-        .footer-links-premium h4, .footer-contact-premium h4 {
-          font-family: 'Inter', sans-serif;
-          font-size: 1.2rem;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
-          color: #ffffff;
+        .jk-footer-title {
+          font-size: 1.5rem;
+          font-weight: 700;
           letter-spacing: 1px;
+          margin-bottom: 1.5rem;
+          text-transform: uppercase;
         }
 
-        .footer-links-premium ul li {
-          margin-bottom: 1rem;
+        .jk-footer-bio {
+          font-size: 0.95rem;
+          line-height: 1.6;
+          font-weight: 500;
         }
 
-        .footer-links-premium ul li a {
-          color: #888;
-          font-size: 1rem;
-          transition: all 0.3s ease;
-          position: relative;
-          display: inline-block;
+        .jk-footer-heading {
+          font-size: 1.3rem;
+          font-weight: 700;
+          margin-bottom: 1.5rem;
         }
 
-        .footer-links-premium ul li a::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 1px;
-          bottom: -2px;
-          left: 0;
-          background-color: var(--primary, #f38d1c);
-          transition: width 0.3s ease;
+        .jk-footer-list {
+          list-style: none;
+          padding: 0;
+          margin: 0;
         }
 
-        .footer-links-premium ul li a:hover {
-          color: #ffffff;
-        }
-
-        .footer-links-premium ul li a:hover::after {
-          width: 100%;
-        }
-
-        .footer-contact-premium ul li {
-          margin-bottom: 1.2rem;
+        .jk-footer-list li {
           display: flex;
           align-items: center;
           gap: 1rem;
-          color: #888;
+          margin-bottom: 1.2rem;
+          font-size: 1rem;
+          font-weight: 600;
         }
 
-        .contact-icon {
-          color: var(--primary, #f38d1c);
-          display: flex;
+        .jk-icon {
+          color: #ffffff;
+          flex-shrink: 0;
         }
 
-        .footer-contact-premium ul li a {
-          color: #888;
+        .highlight-icon {
+          color: #007bb5; /* Slightly lighter blue for the quick links icons */
+        }
+
+        .jk-footer-list a {
+          color: #ffffff;
+          text-decoration: none;
           transition: color 0.3s ease;
         }
 
-        .footer-contact-premium ul li a:hover {
-          color: #ffffff;
+        .jk-footer-list a:hover {
+          color: var(--primary, #f38d1c);
         }
 
-        .footer-bottom-premium {
-          border-top: 1px solid rgba(255, 255, 255, 0.05);
-          padding: 2.5rem 0;
+        .jk-social-icons {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .footer-bottom-premium p {
-          font-size: 0.95rem;
-          color: #666;
-        }
-
-        .social-links-premium {
-          display: flex;
-          align-items: center;
           gap: 1.5rem;
         }
 
-        .social-links-premium a {
-          color: #888;
-          font-weight: 600;
-          font-size: 0.9rem;
-          letter-spacing: 1px;
-          text-transform: uppercase;
-          transition: color 0.3s ease;
+        .jk-social-icons a {
+          color: #ffffff;
+          transition: color 0.3s ease, transform 0.3s ease;
         }
 
-        .social-links-premium a:hover {
+        .jk-social-icons a:hover {
           color: var(--primary, #f38d1c);
+          transform: translateY(-3px);
         }
 
-        .social-links-premium .dot {
-          color: #444;
+        .jk-footer-bottom {
+          padding: 1.5rem 0;
+          background-color: #051329;
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: #b0c4de; /* Light grayish blue */
         }
 
         @media (max-width: 992px) {
-          .footer-cta {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 2rem;
-          }
-          
-          .cta-heading {
-            font-size: 2.8rem;
-          }
-          
-          .footer-premium-grid {
-            grid-template-columns: 1fr 1fr;
+          .jk-footer-container {
+            grid-template-columns: repeat(2, 1fr);
           }
         }
 
         @media (max-width: 768px) {
-          .cta-heading {
-            font-size: 2.2rem;
-          }
-          
-          .footer-premium-grid {
+          .jk-footer-container {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
           }
           
-          .footer-bottom-premium {
-            flex-direction: column;
-            gap: 1.5rem;
-            text-align: center;
+          .jk-footer-bottom {
+            font-size: 0.85rem;
           }
         }
       `}</style>
