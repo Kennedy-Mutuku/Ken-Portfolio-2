@@ -172,7 +172,10 @@ const Services = () => {
         }
 
         /* Card Background Colors & Gradients */
-        .gradient-orange { background: linear-gradient(135deg, #fff 0%, #fff4ea 100%); }
+        .gradient-orange { background: linear-gradient(135deg, #fff 0%, #fff4ea 100%); color: #1a1a1a; }
+        .gradient-orange .bento-bg-img { opacity: 1; }
+        .gradient-orange:hover .bento-content { color: #1a1a1a !important; }
+        .gradient-orange .bento-overlay { display: none; }
         .gradient-blue { background: linear-gradient(135deg, #f0f7ff 0%, #e0f0ff 100%); }
         .gradient-green { background: linear-gradient(135deg, #f0fff4 0%, #dcfce7 100%); }
         .solid-dark { background: #1a1a1a; color: white; border-color: #333; }
