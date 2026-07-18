@@ -6,7 +6,7 @@ import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
 // Asset imports
-import dominionLogo from '../assets/Dominion Sodtwares Logo.png'
+import dominionLogo from '../assets/Kennedy Mutuku logo.png'
 import ksucuImg from '../assets/ksucu-mc1.jpeg'
 import ksucuGroup from '../assets/ksucu-mc 2.png'
 import kenStage from '../assets/ken stage.jpg'
@@ -163,7 +163,7 @@ const FeaturingPage = () => {
                 <div key={i} className="exp-card">
                   <div className="exp-image-col">
                     <div className="exp-img-frame">
-                      <img src={exp.img} alt={exp.company} style={{ objectFit: exp.imgStyle }} />
+                      <img src={exp.img} alt={exp.company} style={{ objectFit: exp.imgStyle }} loading="lazy" />
                     </div>
                     <div className="exp-timeline-dot"></div>
                     {i < experiences.length - 1 && <div className="exp-timeline-line"></div>}

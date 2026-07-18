@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 
 // Asset imports
-import dominionLogo from '../assets/Dominion Sodtwares Logo.png'
+import dominionLogo from '../assets/Kennedy Mutuku logo.png'
 import ksucuGroup from '../assets/ksucu-mc 2.png'
 import kenImg from '../assets/kennnnn.jpg'
 import kenStage from '../assets/ken stage.jpg'
@@ -31,7 +31,7 @@ const Services = () => {
           {compellingHighlights.map((item, i) => (
             <Link to="/featuring" key={i} className="compact-card group">
               <div className="compact-img-box">
-                <img src={item.img} alt={item.title} style={{ objectFit: item.imgStyle }} />
+                <img src={item.img} alt={item.title} style={{ objectFit: item.imgStyle }} loading="lazy" />
               </div>
               <div className="compact-info">
                 <h4>{item.role}</h4>
