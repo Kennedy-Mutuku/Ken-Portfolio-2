@@ -39,7 +39,7 @@ const About = () => {
 
         .about {
           background-color: #fdfdfd;
-          padding: 4rem 0;
+          padding: 4rem 0 2rem;
           font-family: 'Inter', sans-serif;
         }
 

@@ -131,7 +131,7 @@ const Services = () => {
       <style>{`
         .bento-featuring {
           background-color: var(--bg-cream);
-          padding: 5rem 0 2rem;
+          padding: 2rem 0 2rem;
           font-family: 'Inter', sans-serif;
         }
 
