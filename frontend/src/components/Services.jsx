@@ -39,7 +39,7 @@ const Services = () => {
       imgStyle: 'cover',
       icon: <Users size={20} />,
       colSpan: 'col-span-1',
-      color: 'solid-light'
+      color: 'solid-dark'
     },
     { 
       title: 'Machakos Level 5 Hospital', 
@@ -49,7 +49,7 @@ const Services = () => {
       imgStyle: 'cover',
       icon: <Briefcase size={20} />,
       colSpan: 'col-span-2',
-      color: 'gradient-blue'
+      color: 'solid-dark'
     },
     { 
       title: 'Kyangala Boys High School', 
@@ -59,7 +59,7 @@ const Services = () => {
       imgStyle: 'cover',
       icon: <GraduationCap size={20} />,
       colSpan: 'col-span-2',
-      color: 'solid-cream'
+      color: 'solid-dark'
     },
     { 
       title: 'Young Friends Association', 
@@ -69,7 +69,7 @@ const Services = () => {
       imgStyle: 'cover',
       icon: <Heart size={20} />,
       colSpan: 'col-span-1',
-      color: 'gradient-green'
+      color: 'solid-dark'
     },
   ]
 
