@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Briefcase, Code, GraduationCap, Heart, Terminal, Users } from 'lucide-react'
 
 // Asset imports
-import dominionLogo from '../assets/Kennedy Mutuku logo.png'
+import dominionLogo from '../assets/Dominion Sodtwares Logo.png'
 import ksucuGroup from '../assets/ksucu-mc 2.png'
 import kenImg from '../assets/kennnnn.jpg'
 import kenStage from '../assets/ken stage.jpg'
