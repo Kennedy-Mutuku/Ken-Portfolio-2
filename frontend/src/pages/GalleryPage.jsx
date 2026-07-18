@@ -18,8 +18,8 @@ import img10 from '../assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg'
 
 const GalleryPage = () => {
   const photos = [
+    { src: img2, caption: "Professional studio portrait.", type: "large-center" }, // Moved to first for mobile priority
     { src: img1, caption: "Speaking on stage during the annual tech summit.", type: "small" },
-    { src: img2, caption: "Professional studio portrait.", type: "large-center" },
     { src: img3, caption: "Profile shot at the corporate office.", type: "small" },
     { src: img4, caption: "In action during a leadership seminar.", type: "small" },
     { src: img5, caption: "With the incredible KSUCU-MC Team.", type: "small" },
@@ -37,7 +37,7 @@ const GalleryPage = () => {
       <PageHeader title="Gallery" />
       
       <section className="gallery-premium-section">
-        <div className="container">
+        <div className="container gallery-container">
           <motion.div 
             className="gallery-premium-header"
             initial={{ opacity: 0, y: -20 }}
@@ -53,10 +53,17 @@ const GalleryPage = () => {
               <motion.div 
                 key={index} 
                 className={`jk-masonry-item ${photo.type}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                // "Winging in" drop animation
+                initial={{ opacity: 0, y: -50, scale: 0.95, rotate: -2 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                transition={{ 
+                  duration: 0.7, 
+                  delay: index * 0.1, 
+                  type: "spring", 
+                  stiffness: 100, 
+                  damping: 12 
+                }}
               >
                 <div 
                   className="jk-img-wrapper"
@@ -109,6 +116,12 @@ const GalleryPage = () => {
           background-color: #ffffff;
         }
 
+        .gallery-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+
         .gallery-premium-header {
           margin-bottom: 3rem;
         }
@@ -133,6 +146,7 @@ const GalleryPage = () => {
         .jk-masonry-item {
           display: flex;
           flex-direction: column;
+          transform-origin: top center;
         }
 
         /* The large center item spans 2 rows */
@@ -149,6 +163,8 @@ const GalleryPage = () => {
           width: 100%;
           /* Fix height to make the grid align nicely */
           height: 250px; 
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          border-radius: 4px;
         }
 
         .jk-masonry-item.large-center .jk-img-wrapper {
@@ -257,13 +273,28 @@ const GalleryPage = () => {
 
         @media (max-width: 768px) {
           .jk-masonry-grid {
-            grid-template-columns: 1fr;
-            gap: 3rem;
+            /* Mobile specific layout: 3 tiny columns */
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
           }
           
-          .jk-masonry-item.large-center .jk-img-wrapper,
-          .jk-img-wrapper {
-            height: 400px; /* Uniform height on mobile */
+          /* The first item takes full width and is large */
+          .jk-masonry-item:nth-child(1) {
+            grid-column: 1 / -1;
+          }
+
+          /* The first item wrapper height */
+          .jk-masonry-item:nth-child(1) .jk-img-wrapper {
+            height: 400px; 
+          }
+
+          /* The rest are tiny thumbnails */
+          .jk-masonry-item:not(:nth-child(1)) .jk-img-wrapper {
+            height: 120px; 
+          }
+
+          .jk-masonry-item:not(:nth-child(1)) .jk-caption {
+            display: none; /* Hide captions for tiny thumbnails to save space */
           }
         }
       `}</style>
