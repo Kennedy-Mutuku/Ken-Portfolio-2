@@ -17,18 +17,16 @@ import img9 from '../assets/WhatsApp Image 2026-04-04 at 1.52.30 AM.jpeg'
 import img10 from '../assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg'
 
 const GalleryPage = () => {
-  // Add an aspect ratio flag for masonry layout variety
   const photos = [
-    { src: img1, alt: "Kennedy on Stage", type: "wide" },
-    { src: img2, alt: "Kennedy Portrait", type: "tall" },
-    { src: img3, alt: "Kennedy Profile", type: "tall" },
-    { src: img4, alt: "Kennedy Professional", type: "square" },
-    { src: img5, alt: "KSUCU-MC Team", type: "wide" },
-    { src: img6, alt: "KSUCU Event", type: "square" },
-    { src: img7, alt: "Gallery Image 1", type: "tall" },
-    { src: img8, alt: "Gallery Image 2", type: "wide" },
-    { src: img9, alt: "Gallery Image 3", type: "square" },
-    { src: img10, alt: "Gallery Image 4", type: "tall" },
+    { src: img1, caption: "Speaking on stage during the annual tech summit.", type: "small" },
+    { src: img2, caption: "Professional studio portrait.", type: "large-center" },
+    { src: img3, caption: "Profile shot at the corporate office.", type: "small" },
+    { src: img4, caption: "In action during a leadership seminar.", type: "small" },
+    { src: img5, caption: "With the incredible KSUCU-MC Team.", type: "small" },
+    { src: img6, caption: "Hosting the main event at KSUCU.", type: "small" },
+    { src: img7, caption: "Collaborative session with the board.", type: "small" },
+    { src: img8, caption: "Receiving the innovation award.", type: "small" },
+    { src: img9, caption: "Presenting the new software architecture.", type: "small" },
   ];
 
   const [selectedImg, setSelectedImg] = useState(null);
@@ -41,34 +39,36 @@ const GalleryPage = () => {
       <section className="gallery-premium-section">
         <div className="container">
           <motion.div 
-            className="gallery-premium-header text-center"
+            className="gallery-premium-header"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
           >
-            <h2>MOMENTS IN <span>FOCUS</span></h2>
-            <div className="premium-underline mx-auto"></div>
-            <p className="premium-subtitle">A curated collection of impactful moments, leadership highlights, and creative journey.</p>
+            <h2>GALLERY</h2>
           </motion.div>
 
-          <div className="masonry-grid">
+          <div className="jk-masonry-grid">
             {photos.map((photo, index) => (
               <motion.div 
                 key={index} 
-                className={`masonry-item ${photo.type}`}
-                initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                className={`jk-masonry-item ${photo.type}`}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: (index % 4) * 0.1, ease: "easeOut" }}
-                whileHover={{ scale: 0.98 }}
-                onClick={() => setSelectedImg(photo.src)}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               >
-                <div className="masonry-img-wrapper">
-                  <img src={photo.src} alt={photo.alt} loading="lazy" />
-                  <div className="masonry-overlay">
-                    <span className="view-text">ENLARGE VIEW</span>
+                <div 
+                  className="jk-img-wrapper"
+                  onClick={() => setSelectedImg(photo.src)}
+                >
+                  <img src={photo.src} alt={photo.caption} loading="lazy" />
+                  <div className="jk-hover-overlay">
+                    <span className="zoom-icon">+</span>
                   </div>
+                </div>
+                <div className="jk-caption">
+                  <p>{photo.caption}</p>
                 </div>
               </motion.div>
             ))}
@@ -106,122 +106,106 @@ const GalleryPage = () => {
       <style>{`
         .gallery-premium-section {
           padding: 6rem 0;
-          background-color: #fcfcfc;
+          background-color: #ffffff;
         }
 
         .gallery-premium-header {
-          margin-bottom: 4rem;
+          margin-bottom: 3rem;
         }
 
         .gallery-premium-header h2 {
           font-family: 'Inter', sans-serif;
-          font-size: 3rem;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: 2px;
-          color: #111;
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: #333;
           margin-bottom: 1rem;
         }
 
-        .gallery-premium-header h2 span {
-          color: var(--primary, #f38d1c);
-        }
-
-        .premium-underline {
-          height: 3px;
-          width: 60px;
-          background-color: var(--primary, #f38d1c);
-          margin-bottom: 1.5rem;
-        }
-
-        .premium-subtitle {
-          color: #666;
-          font-size: 1.15rem;
-          max-width: 600px;
-          margin: 0 auto;
-          line-height: 1.6;
-        }
-
-        /* Masonry Layout */
-        .masonry-grid {
+        /* JK Inspired Masonry Layout */
+        .jk-masonry-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          grid-auto-rows: 250px;
-          gap: 1.5rem;
-          padding: 0 1rem;
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-flow: dense;
+          gap: 2rem;
+          padding: 0;
         }
 
-        .masonry-item {
+        .jk-masonry-item {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* The large center item spans 2 rows */
+        .jk-masonry-item.large-center {
+          grid-row: span 2;
+          grid-column: 2 / 3; /* Forces it to the middle column on desktop */
+        }
+
+        .jk-img-wrapper {
           position: relative;
           cursor: pointer;
-          border-radius: 8px;
           overflow: hidden;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-          transform-origin: center;
-        }
-
-        /* Span multiple rows/cols for masonry effect */
-        .masonry-item.tall {
-          grid-row: span 2;
-        }
-        
-        .masonry-item.wide {
-          grid-column: span 2;
-        }
-
-        .masonry-item.square {
-          grid-row: span 1;
-          grid-column: span 1;
-        }
-
-        .masonry-img-wrapper {
+          background-color: #f0f0f0;
           width: 100%;
-          height: 100%;
-          position: relative;
-          background-color: #e0e0e0;
+          /* Fix height to make the grid align nicely */
+          height: 250px; 
         }
 
-        .masonry-img-wrapper img {
+        .jk-masonry-item.large-center .jk-img-wrapper {
+          height: 550px; /* Taller height for the prominent image */
+        }
+
+        .jk-img-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: grayscale(80%) contrast(1.1); /* Desaturated default */
-          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+          transition: transform 0.5s ease;
         }
 
-        .masonry-overlay {
+        .jk-hover-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+          background: rgba(0, 0, 0, 0.4);
           display: flex;
-          align-items: flex-end;
-          padding: 2rem;
+          align-items: center;
+          justify-content: center;
           opacity: 0;
-          transition: all 0.5s ease;
+          transition: opacity 0.3s ease;
         }
 
-        .view-text {
-          color: #ffffff;
-          font-family: 'Inter', sans-serif;
-          font-weight: 700;
-          font-size: 0.9rem;
-          letter-spacing: 2px;
-          transform: translateY(20px);
-          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        .zoom-icon {
+          color: white;
+          font-size: 3rem;
+          font-weight: 300;
+          transform: scale(0.5);
+          transition: transform 0.3s ease;
         }
 
-        /* Hover Effects */
-        .masonry-item:hover .masonry-img-wrapper img {
-          filter: grayscale(0%) contrast(1); /* Full color on hover */
-          transform: scale(1.08);
+        .jk-img-wrapper:hover img {
+          transform: scale(1.05);
         }
 
-        .masonry-item:hover .masonry-overlay {
+        .jk-img-wrapper:hover .jk-hover-overlay {
           opacity: 1;
         }
 
-        .masonry-item:hover .view-text {
-          transform: translateY(0);
+        .jk-img-wrapper:hover .zoom-icon {
+          transform: scale(1);
+        }
+
+        /* Captions below images */
+        .jk-caption {
+          margin-top: 1rem;
+          text-align: center;
+        }
+
+        .jk-caption p {
+          font-family: 'Inter', sans-serif;
+          color: #1a4b8c; /* Dark blue similar to the screenshots */
+          font-size: 1.05rem;
+          line-height: 1.5;
+          font-weight: 500;
+          margin: 0;
         }
 
         /* Premium Lightbox */
@@ -261,18 +245,25 @@ const GalleryPage = () => {
         }
 
         /* Responsive Adjustments */
+        @media (max-width: 992px) {
+          .jk-masonry-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          
+          .jk-masonry-item.large-center {
+            grid-column: span 1; /* Reset center column placement */
+          }
+        }
+
         @media (max-width: 768px) {
-          .masonry-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            grid-auto-rows: 200px;
+          .jk-masonry-grid {
+            grid-template-columns: 1fr;
+            gap: 3rem;
           }
           
-          .masonry-item.wide {
-            grid-column: span 1; /* Turn off wide on small screens */
-          }
-          
-          .gallery-premium-header h2 {
-            font-size: 2.2rem;
+          .jk-masonry-item.large-center .jk-img-wrapper,
+          .jk-img-wrapper {
+            height: 400px; /* Uniform height on mobile */
           }
         }
       `}</style>
