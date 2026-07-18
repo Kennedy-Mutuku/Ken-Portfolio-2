@@ -2,13 +2,19 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Phone, ExternalLink, Link, ArrowRight } from 'lucide-react'
 
+import heroImg1 from '../assets/ken.jpg.jpeg'
+import heroImg2 from '../assets/WhatsApp Image 2026-04-04 at 1.51.35 AM.jpeg'
+import heroImg3 from '../assets/WhatsApp Image 2026-04-04 at 1.52.06 AM.jpeg'
+import heroImg4 from '../assets/kennnnn.jpg'
+import heroImg5 from '../assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg'
+
 const content = [
-  { phrase: "Your Vision, My Dedication.", img: "/src/assets/ken.jpg.jpeg" },
-  { phrase: "Moments Captured, Forever Vivid.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.51.35 AM.jpeg" },
-  { phrase: "Precision Code, Timely Delivery.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.52.06 AM.jpeg" },
-  { phrase: "Industrious Soul, Creative Mind.", img: "/src/assets/kennnnn.jpg", position: "center 10%" },
-  { phrase: "Always on Time, Always Exceptional.", img: "/src/assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg" },
-  { phrase: "Excellence, Crafted with Care.", img: "/src/assets/ken.jpg.jpeg" }
+  { phrase: "Your Vision, My Dedication.", img: heroImg1 },
+  { phrase: "Moments Captured, Forever Vivid.", img: heroImg2 },
+  { phrase: "Precision Code, Timely Delivery.", img: heroImg3 },
+  { phrase: "Industrious Soul, Creative Mind.", img: heroImg4, position: "center 10%" },
+  { phrase: "Always on Time, Always Exceptional.", img: heroImg5 },
+  { phrase: "Excellence, Crafted with Care.", img: heroImg1 }
 ]
 
 const Hero = () => {
