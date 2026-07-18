@@ -24,6 +24,7 @@ const Navbar = () => {
     { name: 'Featuring', href: '/featuring', isRoute: true },
     { name: 'Leadership', href: '/leadership', isRoute: true },
     { name: 'Education', href: '/education', isRoute: true },
+    { name: 'Gallery', href: '/gallery', isRoute: true },
     { name: 'Projects', href: '#portfolio', isRoute: false },
     { name: 'Contact', href: '#contact', isRoute: false },
   ]

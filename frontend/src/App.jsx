@@ -5,6 +5,7 @@ import AboutPage from './pages/AboutPage'
 import FeaturingPage from './pages/FeaturingPage'
 import LeadershipPage from './pages/LeadershipPage'
 import EducationPage from './pages/EducationPage'
+import GalleryPage from './pages/GalleryPage'
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/featuring" element={<FeaturingPage />} />
         <Route path="/leadership" element={<LeadershipPage />} />
         <Route path="/education" element={<EducationPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
       </Routes>
     </Router>
   )
