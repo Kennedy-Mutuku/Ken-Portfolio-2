@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import { MapPin, Mail, Star, Image as ImageIcon } from 'lucide-react'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { MapPin, Mail, ChevronRight } from 'lucide-react'
 
 // Basic SVG components for social icons to fix the Lucide missing export error
 const FacebookIcon = ({ size }) => (
@@ -31,6 +31,20 @@ const YoutubeIcon = ({ size, className }) => (
 )
 
 const Footer = () => {
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
+
+  const navLinks = [
+    { name: 'Home', href: '/', isRoute: true },
+    { name: 'About Ken', href: '/about', isRoute: true },
+    { name: 'Featuring', href: '/featuring', isRoute: true },
+    { name: 'Leadership', href: '/leadership', isRoute: true },
+    { name: 'Education', href: '/education', isRoute: true },
+    { name: 'Gallery', href: '/gallery', isRoute: true },
+    { name: 'Projects', href: '#portfolio', isRoute: false },
+    { name: 'Contact', href: '#contact', isRoute: false },
+  ]
+
   return (
     <footer className="jk-footer">
       <div className="container jk-footer-container">
@@ -64,19 +78,26 @@ const Footer = () => {
         {/* Section 3: Quick Links */}
         <div className="jk-footer-section">
           <h3 className="jk-footer-heading">Quick Links</h3>
-          <ul className="jk-footer-list">
-            <li>
-              <Star size={18} className="jk-icon highlight-icon" />
-              <RouterLink to="/about">About Ken</RouterLink>
-            </li>
-            <li>
-              <ImageIcon size={18} className="jk-icon highlight-icon" />
-              <RouterLink to="/gallery">Gallery</RouterLink>
-            </li>
-            <li>
-              <YoutubeIcon size={18} className="jk-icon highlight-icon" />
-              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">Subscribe On Youtube</a>
-            </li>
+          <ul className="jk-footer-list jk-quick-links-grid">
+            {navLinks.map((link) => (
+              <li key={link.name}>
+                <ChevronRight size={16} className="jk-icon highlight-icon" />
+                {link.isRoute ? (
+                  <RouterLink 
+                    to={link.href}
+                    onClick={() => {
+                      if (location.pathname === link.href) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {link.name}
+                  </RouterLink>
+                ) : (
+                  <a href={isHomePage ? link.href : `/${link.href}`}>{link.name}</a>
+                )}
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -146,6 +167,12 @@ const Footer = () => {
           margin: 0;
         }
 
+        .jk-quick-links-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem 1rem;
+        }
+
         .jk-footer-list li {
           display: flex;
           align-items: center;
@@ -153,6 +180,11 @@ const Footer = () => {
           margin-bottom: 1.2rem;
           font-size: 1rem;
           font-weight: 600;
+        }
+
+        .jk-quick-links-grid li {
+          margin-bottom: 0.8rem;
+          gap: 0.5rem;
         }
 
         .jk-icon {
