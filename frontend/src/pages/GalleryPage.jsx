@@ -112,7 +112,7 @@ const GalleryPage = () => {
 
       <style>{`
         .gallery-premium-section {
-          padding: 6rem 0;
+          padding: 2.5rem 0 6rem 0;
           background-color: #ffffff;
         }
 
