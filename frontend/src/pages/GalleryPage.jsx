@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
@@ -31,6 +32,31 @@ const GalleryPage = () => {
 
   const [selectedImg, setSelectedImg] = useState(null);
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -38,36 +64,66 @@ const GalleryPage = () => {
       
       <section className="gallery-section">
         <div className="container">
-          <div className="section-header text-center">
+          <motion.div 
+            className="section-header text-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             <h2><span>Featured Photos</span></h2>
             <div className="underline mx-auto"></div>
             <p className="summary-subtitle">A collection of moments from my journey.</p>
-          </div>
+          </motion.div>
 
-          <div className="gallery-grid">
+          <motion.div 
+            className="gallery-grid"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {photos.map((photo, index) => (
-              <div 
+              <motion.div 
                 key={index} 
                 className="gallery-item"
+                variants={itemVariants}
+                whileHover={{ scale: 1.03, zIndex: 10 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedImg(photo.src)}
               >
                 <img src={photo.src} alt={photo.alt} loading="lazy" />
                 <div className="gallery-overlay">
                   <span>View Photo</span>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Lightbox */}
-      {selectedImg && (
-        <div className="lightbox" onClick={() => setSelectedImg(null)}>
-          <span className="close-lightbox">&times;</span>
-          <img src={selectedImg} alt="Enlarged view" />
-        </div>
-      )}
+      {/* Lightbox with AnimatePresence */}
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div 
+            className="lightbox" 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImg(null)}
+          >
+            <span className="close-lightbox">&times;</span>
+            <motion.img 
+              src={selectedImg} 
+              alt="Enlarged view" 
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()} // Prevent clicking image from closing
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Footer />
 
