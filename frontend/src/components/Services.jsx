@@ -12,6 +12,7 @@ import ksucuImg from '../assets/ksucu-mc1.jpeg'
 const Services = () => {
   const compellingHighlights = [
     { 
+      id: 'dominion',
       title: 'Dominion Softwares', 
       role: 'Founder & CEO', 
       period: '2025 - Present', 
@@ -22,6 +23,7 @@ const Services = () => {
       color: 'gradient-orange'
     },
     { 
+      id: 'ksucu-mc',
       title: 'KSUCU-MC', 
       role: 'Lead Developer', 
       period: '2025 - 2026', 
@@ -32,6 +34,7 @@ const Services = () => {
       color: 'solid-dark'
     },
     { 
+      id: 'ksucu',
       title: 'KSUCU', 
       role: 'Publicity Secretary', 
       period: '2024 - 2025', 
@@ -42,6 +45,7 @@ const Services = () => {
       color: 'solid-dark'
     },
     { 
+      id: 'machakos',
       title: 'Machakos Level 5 Hospital', 
       role: 'Software Engineering Attachment', 
       period: '2024 - 2024', 
@@ -52,6 +56,7 @@ const Services = () => {
       color: 'solid-dark'
     },
     { 
+      id: 'kyangala',
       title: 'Kyangala Boys High School', 
       role: 'Math & Computer Teacher', 
       period: '2023 - 2023', 
@@ -62,6 +67,7 @@ const Services = () => {
       color: 'solid-dark'
     },
     { 
+      id: 'yfa',
       title: 'Young Friends Association', 
       role: 'Chairperson', 
       period: '2019 - Present', 
@@ -84,7 +90,7 @@ const Services = () => {
 
         <div className="bento-grid">
           {compellingHighlights.map((item, i) => (
-            <Link to="/featuring" key={i} className={`bento-card ${item.colSpan} ${item.color} group`}>
+            <Link to={`/featuring#${item.id}`} key={i} className={`bento-card ${item.colSpan} ${item.color} group`}>
               {/* Background Image Layer (only for some cards or visible on hover) */}
               <div className="bento-bg-img">
                 <img src={item.img} alt={item.title} style={{ objectFit: item.imgStyle }} loading="lazy" />
@@ -100,7 +106,11 @@ const Services = () => {
                 
                 <div className="bento-bottom">
                   <h4>{item.role}</h4>
-                  <p>{item.title}</p>
+                  <p className="company-name">{item.title}</p>
+                  <div className="see-more-link">
+                    <span>See more about this position</span>
+                    <ArrowRight size={16} />
+                  </div>
                 </div>
               </div>
               
@@ -279,17 +289,44 @@ const Services = () => {
         }
 
         .bento-bottom h4 {
-          font-size: 1.4rem;
-          font-weight: 800;
-          margin-bottom: 0.4rem;
+          font-size: 1.6rem;
+          font-weight: 900;
+          margin-bottom: 0.5rem;
           line-height: 1.2;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
 
-        .bento-bottom p {
-          font-size: 0.95rem;
-          opacity: 0.8;
-          font-weight: 500;
-          margin: 0;
+        .bento-bottom p.company-name {
+          font-size: 1.1rem;
+          opacity: 0.9;
+          font-weight: 700;
+          margin: 0 0 1rem 0;
+          color: var(--primary, #f38d1c);
+        }
+
+        .see-more-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.9rem;
+          font-weight: 600;
+          padding: 0.5rem 1rem;
+          background: rgba(0,0,0,0.05);
+          border-radius: 20px;
+          backdrop-filter: blur(5px);
+          transition: all 0.3s ease;
+          width: fit-content;
+        }
+
+        .solid-dark .see-more-link {
+          background: rgba(255,255,255,0.15);
+        }
+
+        .bento-card:hover .see-more-link {
+          background: var(--primary, #f38d1c);
+          color: white !important;
+          transform: translateX(5px);
         }
 
         /* Hover Arrow */

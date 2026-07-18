@@ -16,6 +16,7 @@ const FeaturingPage = () => {
 
   const experiences = [
     {
+      id: 'dominion',
       role: 'Founder & Chief Executive Officer (CEO)',
       company: 'Dominion Softwares',
       period: 'January 2025 – Present',
@@ -46,6 +47,7 @@ const FeaturingPage = () => {
       ],
     },
     {
+      id: 'ksucu-mc',
       role: 'Lead Developer',
       company: 'Kisii University Christian Union – Main Campus (KSUCU-MC)',
       period: 'Nov 2025 - Apr 2026',
@@ -62,6 +64,7 @@ const FeaturingPage = () => {
       ],
     },
     {
+      id: 'ksucu',
       role: 'Publicity Secretary',
       company: 'Kisii University Christian Union',
       period: 'Sep 2024 - Sep 2025',
@@ -90,6 +93,7 @@ const FeaturingPage = () => {
       ],
     },
     {
+      id: 'machakos',
       role: 'Software Engineering Attachment',
       company: 'Machakos Level 5 Hospital',
       period: 'May 2024 - Aug 2024',
@@ -104,6 +108,7 @@ const FeaturingPage = () => {
       ],
     },
     {
+      id: 'kyangala',
       role: 'Mathematics and Computer Teacher',
       company: 'Kyangala Boys High School',
       period: 'Apr 2023 - Aug 2023',
@@ -132,6 +137,7 @@ const FeaturingPage = () => {
       ],
     },
     {
+      id: 'yfa',
       role: 'Chairperson & Co-founder',
       company: 'Young Friends Association (YFA)',
       period: 'Jan 2019 - Present',
@@ -160,7 +166,7 @@ const FeaturingPage = () => {
           {/* ── EXPERIENCE ── */}
             <div className="experience-list">
               {experiences.map((exp, i) => (
-                <div key={i} className="exp-card">
+                <div id={exp.id} key={i} className="exp-card">
                   <div className="exp-image-col">
                     <div className="exp-img-frame">
                       <img src={exp.img} alt={exp.company} style={{ objectFit: exp.imgStyle }} loading="lazy" />
@@ -251,6 +257,7 @@ const FeaturingPage = () => {
           gap: 2rem;
           position: relative;
           padding-bottom: 2.5rem;
+          scroll-margin-top: 100px;
         }
 
         .exp-image-col {
