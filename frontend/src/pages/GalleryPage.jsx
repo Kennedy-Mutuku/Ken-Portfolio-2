@@ -4,30 +4,55 @@ import Navbar from '../components/Navbar'
 import PageHeader from '../components/PageHeader'
 import Footer from '../components/Footer'
 
-// Import photos
-import img1 from '../assets/ken stage.jpg'
+// Explicit imports for structured layout
 import img2 from '../assets/ken.jpeg'
+import img1 from '../assets/ken stage.jpg'
 import img3 from '../assets/ken.jpg.jpeg'
 import img4 from '../assets/kennnnn.jpg'
 import img5 from '../assets/ksucu-mc 2.png'
 import img6 from '../assets/ksucu-mc1.jpeg'
-import img7 from '../assets/WhatsApp Image 2026-04-04 at 1.51.35 AM.jpeg'
-import img8 from '../assets/WhatsApp Image 2026-04-04 at 1.52.06 AM.jpeg'
-import img9 from '../assets/WhatsApp Image 2026-04-04 at 1.52.30 AM.jpeg'
-import img10 from '../assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg'
+
+// Dynamically load all images from assets
+const allImages = import.meta.glob('../assets/*.{jpeg,jpg,png}', { eager: true });
+
+// Define non-gallery assets to ignore
+const ignoreList = [
+  'Dominion Sodtwares Logo.png', 'Kennedy Mutuku logo.png', 'headerphoto.jpg', 
+  'hero.png', 'hod.png', 'icons.jpg', 'ksucu.png', 'react.svg', 'vite.svg', 
+  'jumuia 1 (1).png', 'jumuia 2.png', 'jumuia.png'
+];
 
 const GalleryPage = () => {
-  const photos = [
-    { src: img2, caption: "Professional studio portrait.", type: "large-center" }, // Moved to first for mobile priority
+  // Define our explicit, structured photos first
+  const explicitPhotos = [
+    { src: img2, caption: "Professional studio portrait.", type: "large-center" }, 
     { src: img1, caption: "Speaking on stage during the annual tech summit.", type: "small" },
     { src: img3, caption: "Profile shot at the corporate office.", type: "small" },
     { src: img4, caption: "In action during a leadership seminar.", type: "small" },
     { src: img5, caption: "With the incredible KSUCU-MC Team.", type: "small" },
     { src: img6, caption: "Hosting the main event at KSUCU.", type: "small" },
-    { src: img7, caption: "Collaborative session with the board.", type: "small" },
-    { src: img8, caption: "Receiving the innovation award.", type: "small" },
-    { src: img9, caption: "Presenting the new software architecture.", type: "small" },
   ];
+
+  const explicitSrcs = explicitPhotos.map(p => p.src);
+  const dynamicPhotos = [];
+
+  // Extract all dynamic photos that aren't ignored or explicitly loaded
+  for (const path in allImages) {
+    const filename = path.split('/').pop();
+    if (!ignoreList.includes(filename)) {
+      const src = allImages[path].default || allImages[path]; // Handle different Vite glob return formats
+      if (!explicitSrcs.includes(src)) {
+        dynamicPhotos.push({
+          src: src,
+          caption: "Gallery highlight.", 
+          type: "small"
+        });
+      }
+    }
+  }
+
+  // Combine them
+  const photos = [...explicitPhotos, ...dynamicPhotos];
 
   const [selectedImg, setSelectedImg] = useState(null);
 
