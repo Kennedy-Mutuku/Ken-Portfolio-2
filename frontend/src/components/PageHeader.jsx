@@ -1,89 +1,95 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import headerPhoto from '../assets/headerphoto.jpg'
-import logoImg from '../assets/Kennedy Mutuku logo.png'
 
 const PageHeader = ({ title }) => {
   return (
-    <div className="page-header-strip">
-      <div className="ph-left">
-        <div className="ph-logo-bg">
-          <img src={logoImg} alt="Kennedy Mutuku" className="ph-logo" />
-        </div>
+    <div className="premium-page-header">
+      <div className="ph-bg-container">
+        <img src={headerPhoto} alt="Header Background" className="ph-bg-image" />
+        <div className="ph-bg-overlay"></div>
       </div>
       
-      <div className="ph-center">
-        <h1 className="ph-title">{title}</h1>
-        <div className="ph-breadcrumb">
-          <Link to="/">Home</Link> <span className="ph-separator">»</span> <span>{title}</span>
-        </div>
-      </div>
-      
-      <div className="ph-right">
-        <img src={headerPhoto} alt="Header background" className="ph-bg-img" />
-        <div className="ph-overlay"></div>
+      <div className="container ph-content">
+        <motion.div 
+          className="ph-text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h1 className="ph-title">{title}</h1>
+          <div className="ph-breadcrumb">
+            <Link to="/">Home</Link> <span className="ph-separator">»</span> <span>{title}</span>
+          </div>
+        </motion.div>
       </div>
       
       <style>{`
-        .page-header-strip {
+        .premium-page-header {
           position: relative;
+          height: 450px; /* Tall, massive banner like JK */
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          height: 120px; /* Minimal vertical space */
-          background-color: #0f172a;
+          justify-content: center;
+          margin-top: 80px; /* Offset for fixed navbar */
+          background-color: #050505;
           overflow: hidden;
-          margin-top: 134px; /* Offset for fixed navbar */
-          color: white;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        .ph-left {
-          z-index: 2;
-          display: flex;
-          align-items: center;
-          width: 30%;
+        .ph-bg-container {
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+        }
+        
+        .ph-bg-image {
+          width: 100%;
           height: 100%;
+          object-fit: cover;
+          /* Position right center to try and align portraits similarly to Jeff's */
+          object-position: 70% center; 
         }
         
-        .ph-logo-bg {
-          background: rgba(255, 255, 255, 0.95);
-          height: 100%;
-          display: flex;
-          align-items: center;
-          padding: 0 2rem;
-          clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        .ph-bg-overlay {
+          position: absolute;
+          inset: 0;
+          /* Premium dark gradient overlay: darker on edges, slightly transparent in center */
+          background: radial-gradient(circle at center, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0.85) 100%);
         }
         
-        .ph-logo {
-          height: 100px;
-          max-height: 90%;
-          width: auto;
-          object-fit: contain;
-        }
-        
-        .ph-center {
+        .ph-content {
+          position: relative;
           z-index: 2;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        
+        .ph-text-center {
           text-align: center;
-          width: 40%;
         }
         
         .ph-title {
-          font-size: 2rem;
-          font-weight: 800;
-          margin: 0 0 0.2rem 0;
+          font-family: 'Inter', sans-serif;
+          font-size: 3.5rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0 0 0.5rem 0;
           letter-spacing: 1px;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+          text-shadow: 0 4px 20px rgba(0,0,0,0.6);
         }
         
         .ph-breadcrumb {
-          font-size: 0.9rem;
-          color: #e2e8f0;
-          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          font-size: 1.05rem;
+          color: #ffffff;
+          font-weight: 500;
+          text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         
         .ph-breadcrumb a {
-          color: #e2e8f0;
+          color: #ffffff;
           text-decoration: none;
           transition: color 0.3s ease;
         }
@@ -93,106 +99,33 @@ const PageHeader = ({ title }) => {
         }
         
         .ph-separator {
-          margin: 0 8px;
+          margin: 0 10px;
           color: var(--primary, #f38d1c);
-        }
-        
-        .ph-right {
-          position: absolute;
-          right: 0;
-          top: 0;
-          height: 100%;
-          width: 65%;
-          z-index: 1;
-        }
-        
-        .ph-bg-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center 25%;
-        }
-        
-        .ph-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(to right, #0f172a 0%, rgba(15,23,42,0.85) 30%, rgba(15,23,42,0.1) 100%);
-        }
-        
-        /* Make the left side background seamless with the overlay */
-        .page-header-strip::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 40%;
-          height: 100%;
-          background: #0f172a;
-          z-index: 0;
+          font-weight: 700;
         }
         
         @media (max-width: 992px) {
-          .ph-logo {
-            height: 75px;
+          .premium-page-header {
+            height: 350px;
           }
-          .ph-logo-bg {
-            padding: 0 1rem;
+          .ph-title {
+            font-size: 3rem;
           }
         }
         
         @media (max-width: 768px) {
-          .page-header-strip {
-            height: 110px;
-            margin-top: 110px; /* Reduced navbar height on mobile */
-          }
-          
-          .ph-left {
-            width: auto;
-          }
-          
-          .ph-logo-bg {
-            padding: 0 1.5rem 0 1rem;
-            clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
-          }
-          
-          .ph-logo {
-            height: 65px;
-          }
-          
-          .ph-center {
-            width: 100%;
-            text-align: right;
-            padding-right: 1.5rem;
-          }
-          
-          .ph-title {
-            font-size: 1.5rem;
-          }
-          
-          .ph-right {
-            width: 100%;
-          }
-          
-          .ph-overlay {
-            background: linear-gradient(to right, #0f172a 0%, rgba(15,23,42,0.9) 40%, rgba(15,23,42,0.4) 100%);
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .ph-logo-bg {
-            padding: 0 1rem 0 0.5rem;
-          }
-          .ph-logo {
-            height: 50px;
+          .premium-page-header {
+            height: 300px;
+            margin-top: 70px;
           }
           .ph-title {
-            font-size: 1.3rem;
+            font-size: 2.5rem;
           }
-          .ph-center {
-            padding-right: 1rem;
+          .ph-breadcrumb {
+            font-size: 0.95rem;
+          }
+          .ph-bg-image {
+            object-position: center center;
           }
         }
       `}</style>
