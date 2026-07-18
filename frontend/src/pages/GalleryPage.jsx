@@ -17,109 +17,85 @@ import img9 from '../assets/WhatsApp Image 2026-04-04 at 1.52.30 AM.jpeg'
 import img10 from '../assets/WhatsApp Image 2026-04-04 at 1.52.46 AM.jpeg'
 
 const GalleryPage = () => {
+  // Add an aspect ratio flag for masonry layout variety
   const photos = [
-    { src: img1, alt: "Kennedy on Stage" },
-    { src: img2, alt: "Kennedy Portrait" },
-    { src: img3, alt: "Kennedy Profile" },
-    { src: img4, alt: "Kennedy Professional" },
-    { src: img5, alt: "KSUCU-MC Team" },
-    { src: img6, alt: "KSUCU Event" },
-    { src: img7, alt: "Gallery Image 1" },
-    { src: img8, alt: "Gallery Image 2" },
-    { src: img9, alt: "Gallery Image 3" },
-    { src: img10, alt: "Gallery Image 4" },
+    { src: img1, alt: "Kennedy on Stage", type: "wide" },
+    { src: img2, alt: "Kennedy Portrait", type: "tall" },
+    { src: img3, alt: "Kennedy Profile", type: "tall" },
+    { src: img4, alt: "Kennedy Professional", type: "square" },
+    { src: img5, alt: "KSUCU-MC Team", type: "wide" },
+    { src: img6, alt: "KSUCU Event", type: "square" },
+    { src: img7, alt: "Gallery Image 1", type: "tall" },
+    { src: img8, alt: "Gallery Image 2", type: "wide" },
+    { src: img9, alt: "Gallery Image 3", type: "square" },
+    { src: img10, alt: "Gallery Image 4", type: "tall" },
   ];
 
   const [selectedImg, setSelectedImg] = useState(null);
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
-    show: { 
-      opacity: 1, 
-      y: 0, 
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15
-      }
-    }
-  };
 
   return (
     <>
       <Navbar />
       <PageHeader title="Gallery" />
       
-      <section className="gallery-section">
+      <section className="gallery-premium-section">
         <div className="container">
           <motion.div 
-            className="section-header text-center"
+            className="gallery-premium-header text-center"
             initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
           >
-            <h2><span>Featured Photos</span></h2>
-            <div className="underline mx-auto"></div>
-            <p className="summary-subtitle">A collection of moments from my journey.</p>
+            <h2>MOMENTS IN <span>FOCUS</span></h2>
+            <div className="premium-underline mx-auto"></div>
+            <p className="premium-subtitle">A curated collection of impactful moments, leadership highlights, and creative journey.</p>
           </motion.div>
 
-          <motion.div 
-            className="gallery-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <div className="masonry-grid">
             {photos.map((photo, index) => (
               <motion.div 
                 key={index} 
-                className="gallery-item"
-                variants={itemVariants}
-                whileHover={{ scale: 1.03, zIndex: 10 }}
-                whileTap={{ scale: 0.95 }}
+                className={`masonry-item ${photo.type}`}
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.7, delay: (index % 4) * 0.1, ease: "easeOut" }}
+                whileHover={{ scale: 0.98 }}
                 onClick={() => setSelectedImg(photo.src)}
               >
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
-                <div className="gallery-overlay">
-                  <span>View Photo</span>
+                <div className="masonry-img-wrapper">
+                  <img src={photo.src} alt={photo.alt} loading="lazy" />
+                  <div className="masonry-overlay">
+                    <span className="view-text">ENLARGE VIEW</span>
+                  </div>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Lightbox with AnimatePresence */}
+      {/* Premium Lightbox */}
       <AnimatePresence>
         {selectedImg && (
           <motion.div 
-            className="lightbox" 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className="premium-lightbox" 
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.4 }}
             onClick={() => setSelectedImg(null)}
           >
-            <span className="close-lightbox">&times;</span>
+            <span className="premium-close">&times;</span>
             <motion.img 
               src={selectedImg} 
               alt="Enlarged view" 
-              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.8, opacity: 0, y: 50 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              onClick={(e) => e.stopPropagation()} // Prevent clicking image from closing
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              onClick={(e) => e.stopPropagation()} 
             />
           </motion.div>
         )}
@@ -128,109 +104,176 @@ const GalleryPage = () => {
       <Footer />
 
       <style>{`
-        .gallery-section {
-          padding: 5rem 0;
-          background-color: var(--bg-cream, #f9f9f9);
+        .gallery-premium-section {
+          padding: 6rem 0;
+          background-color: #fcfcfc;
         }
 
-        .section-header {
-          margin-bottom: 3.5rem;
+        .gallery-premium-header {
+          margin-bottom: 4rem;
         }
 
-        .summary-subtitle {
-          text-align: center;
+        .gallery-premium-header h2 {
+          font-family: 'Inter', sans-serif;
+          font-size: 3rem;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          color: #111;
+          margin-bottom: 1rem;
+        }
+
+        .gallery-premium-header h2 span {
+          color: var(--primary, #f38d1c);
+        }
+
+        .premium-underline {
+          height: 3px;
+          width: 60px;
+          background-color: var(--primary, #f38d1c);
+          margin-bottom: 1.5rem;
+        }
+
+        .premium-subtitle {
           color: #666;
-          margin-top: 1rem;
-          font-size: 1.1rem;
+          font-size: 1.15rem;
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.6;
         }
 
-        .gallery-grid {
+        /* Masonry Layout */
+        .masonry-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          grid-auto-rows: 250px;
           gap: 1.5rem;
           padding: 0 1rem;
         }
 
-        .gallery-item {
+        .masonry-item {
           position: relative;
-          border-radius: 12px;
-          overflow: hidden;
-          aspect-ratio: 1 / 1;
           cursor: pointer;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+          transform-origin: center;
         }
 
-        .gallery-item img {
+        /* Span multiple rows/cols for masonry effect */
+        .masonry-item.tall {
+          grid-row: span 2;
+        }
+        
+        .masonry-item.wide {
+          grid-column: span 2;
+        }
+
+        .masonry-item.square {
+          grid-row: span 1;
+          grid-column: span 1;
+        }
+
+        .masonry-img-wrapper {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          background-color: #e0e0e0;
+        }
+
+        .masonry-img-wrapper img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: transform 0.5s ease;
+          filter: grayscale(80%) contrast(1.1); /* Desaturated default */
+          transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .gallery-overlay {
+        .masonry-overlay {
           position: absolute;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(243, 141, 28, 0.8);
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-end;
+          padding: 2rem;
           opacity: 0;
-          transition: opacity 0.3s ease;
+          transition: all 0.5s ease;
         }
 
-        .gallery-overlay span {
-          color: white;
-          font-weight: 600;
-          font-size: 1.1rem;
+        .view-text {
+          color: #ffffff;
+          font-family: 'Inter', sans-serif;
+          font-weight: 700;
+          font-size: 0.9rem;
+          letter-spacing: 2px;
           transform: translateY(20px);
-          transition: transform 0.3s ease;
+          transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .gallery-item:hover img {
-          transform: scale(1.05);
+        /* Hover Effects */
+        .masonry-item:hover .masonry-img-wrapper img {
+          filter: grayscale(0%) contrast(1); /* Full color on hover */
+          transform: scale(1.08);
         }
 
-        .gallery-item:hover .gallery-overlay {
+        .masonry-item:hover .masonry-overlay {
           opacity: 1;
         }
 
-        .gallery-item:hover .gallery-overlay span {
+        .masonry-item:hover .view-text {
           transform: translateY(0);
         }
 
-        /* Lightbox */
-        .lightbox {
+        /* Premium Lightbox */
+        .premium-lightbox {
           position: fixed;
-          top: 0; left: 0; right: 0; bottom: 0;
-          background: rgba(0,0,0,0.9);
-          z-index: 2000;
+          inset: 0;
+          background: rgba(10, 10, 10, 0.95);
+          z-index: 9999;
           display: flex;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
-          padding: 2rem;
+          padding: 3rem;
+          cursor: zoom-out;
         }
 
-        .lightbox img {
+        .premium-lightbox img {
           max-width: 100%;
           max-height: 90vh;
-          border-radius: 8px;
-          box-shadow: 0 5px 30px rgba(0,0,0,0.3);
           object-fit: contain;
+          box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+          border-radius: 4px;
         }
 
-        .close-lightbox {
+        .premium-close {
           position: absolute;
           top: 2rem;
           right: 3rem;
-          color: white;
+          color: #ffffff;
           font-size: 3rem;
-          cursor: pointer;
-          transition: color 0.3s ease;
+          font-weight: 300;
+          transition: all 0.3s ease;
         }
 
-        .close-lightbox:hover {
+        .premium-close:hover {
           color: var(--primary, #f38d1c);
+          transform: rotate(90deg);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+          .masonry-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 200px;
+          }
+          
+          .masonry-item.wide {
+            grid-column: span 1; /* Turn off wide on small screens */
+          }
+          
+          .gallery-premium-header h2 {
+            font-size: 2.2rem;
+          }
         }
       `}</style>
     </>

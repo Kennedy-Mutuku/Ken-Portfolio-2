@@ -1,170 +1,270 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import kenImg from '../assets/ken stage.jpg';
+import { motion, useScroll, useTransform } from 'framer-motion'
+import kenImg from '../assets/ken stage.jpg'
 
 const About = () => {
+  const containerRef = useRef(null)
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  })
+  
+  const yImage = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"])
+
   return (
-    <section id="about" className="about">
+    <section id="about" className="about-premium" ref={containerRef}>
       <div className="container">
-        <div className="about-layout">
+        <div className="about-premium-layout">
           
-          {/* Left Column: Image with offset background */}
-          <div className="about-image-column">
-            <div className="image-wrapper">
-              <div className="image-bg-block"></div>
-              <img src={kenImg} alt="Kennedy Kioko Mutuku" className="profile-img" />
-            </div>
+          <div className="about-premium-image-col">
+            <motion.div 
+              className="premium-image-wrapper"
+              style={{ y: yImage }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <img src={kenImg} alt="Kennedy Kioko Mutuku" className="premium-img" loading="lazy" />
+              <div className="premium-image-overlay"></div>
+            </motion.div>
           </div>
 
-          {/* Right Column: Bordered text box */}
-          <div className="about-text-column">
-            <div className="about-content-box">
-              <h2 className="about-heading">ABOUT KENNEDY MUTUKU</h2>
+          <div className="about-premium-text-col">
+            <motion.div 
+              className="premium-text-content"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={{
+                visible: { transition: { staggerChildren: 0.2 } },
+                hidden: {}
+              }}
+            >
+              <motion.h2 
+                className="premium-heading"
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+              >
+                MEET<br/><span className="highlight">KENNEDY.</span>
+              </motion.h2>
               
-              <p>
-                Kennedy Mutuku is a Software Engineer, entrepreneur, and digital innovator dedicated to building technology and media solutions that create meaningful impact. As the Founder and CEO of Dominion Softwares Ltd and Dominion Multimedia Group, he leads the development of innovative software systems and creative digital media that empower businesses, institutions, and organizations to embrace digital transformation and communicate with excellence.
-              </p>
+              <motion.div 
+                className="premium-divider"
+                variants={{
+                  hidden: { width: 0 },
+                  visible: { width: "80px", transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+              ></motion.div>
+
+              <motion.p 
+                className="premium-paragraph lead"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+              >
+                Software Engineer, entrepreneur, and digital innovator dedicated to building technology and media solutions that create meaningful impact.
+              </motion.p>
+
+              <motion.p 
+                className="premium-paragraph"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+              >
+                As the Founder and CEO of Dominion Softwares Ltd and Dominion Multimedia Group, he leads the development of innovative software systems and creative digital media that empower businesses to embrace digital transformation and communicate with excellence.
+              </motion.p>
               
-              <Link to="/about" className="read-more-btn">READ MORE</Link>
-            </div>
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                }}
+              >
+                <Link to="/about" className="premium-btn">
+                  <span>DISCOVER MORE</span>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
 
         </div>
       </div>
 
       <style>{`
-        :root {
-          --navy-dark: #001333; /* The dark blue from the reference */
+        .about-premium {
+          padding: 8rem 0 6rem;
+          background-color: #050505; /* Deep dark premium background */
+          color: #ffffff;
+          overflow: hidden;
         }
 
-        .about {
-          background-color: #fdfdfd;
-          padding: 4rem 0 2rem;
-          font-family: 'Inter', sans-serif;
-        }
-
-        .about-layout {
+        .about-premium-layout {
           display: flex;
-          align-items: stretch;
-          justify-content: center;
-          gap: 2rem;
-          max-width: 1100px;
+          align-items: center;
+          gap: 6rem;
+          max-width: 1200px;
           margin: 0 auto;
         }
 
         /* Image Column */
-        .about-image-column {
-          flex: 0 0 35%;
+        .about-premium-image-col {
+          flex: 1;
           position: relative;
-          display: flex;
-          align-items: stretch;
+          z-index: 2;
         }
 
-        .image-wrapper {
+        .premium-image-wrapper {
           position: relative;
           width: 100%;
-          padding-left: 20px;
-          padding-bottom: 20px;
+          aspect-ratio: 3/4;
+          overflow: hidden;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.5);
         }
 
-        .image-bg-block {
+        .premium-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(20%) contrast(1.1);
+        }
+
+        .premium-image-overlay {
           position: absolute;
-          top: 50px;
-          bottom: -15px;
-          left: -15px;
-          right: 30px;
-          background-color: var(--navy-dark);
-          z-index: 0;
-        }
-
-        .profile-img {
-          position: relative;
-          width: 100%;
-          height: auto;
-          z-index: 1;
-          display: block;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
         }
 
         /* Text Column */
-        .about-text-column {
-          flex: 0 0 65%;
-          display: flex;
-          align-items: stretch;
+        .about-premium-text-col {
+          flex: 1;
+          z-index: 3;
         }
 
-        .about-content-box {
-          border: 1px solid var(--navy-dark);
-          padding: 2.5rem 3rem;
-          background: #ffffff;
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+        .premium-text-content {
+          max-width: 500px;
         }
 
-        .about-heading {
-          font-size: 1.5rem;
-          color: var(--navy-dark);
-          letter-spacing: 2px;
-          text-transform: uppercase;
-          margin-bottom: 1.5rem;
-          font-weight: 800;
-        }
-
-        .about-content-box p {
-          font-size: 1.05rem;
-          line-height: 1.8;
-          color: #4a4a4a;
-          margin-bottom: 1.5rem;
-        }
-
-        .read-more-btn {
-          align-self: flex-start;
-          margin-top: 0.5rem;
-          padding: 0.7rem 1.5rem;
-          background: transparent;
-          border: 1px solid var(--navy-dark);
-          color: var(--navy-dark);
-          font-size: 0.8rem;
-          font-weight: 600;
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          text-decoration: none;
-          display: inline-block;
-        }
-
-        .read-more-btn:hover {
-          background: var(--navy-dark);
+        .premium-heading {
+          font-family: 'Inter', sans-serif;
+          font-size: 4rem;
+          line-height: 1.1;
+          font-weight: 900;
+          letter-spacing: -1px;
+          margin-bottom: 2rem;
           color: #ffffff;
         }
 
+        .premium-heading .highlight {
+          color: var(--primary, #f38d1c);
+        }
+
+        .premium-divider {
+          height: 3px;
+          background-color: var(--primary, #f38d1c);
+          margin-bottom: 2.5rem;
+        }
+
+        .premium-paragraph {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.1rem;
+          line-height: 1.8;
+          color: #a0a0a0;
+          margin-bottom: 1.5rem;
+        }
+
+        .premium-paragraph.lead {
+          font-size: 1.35rem;
+          color: #e0e0e0;
+          font-weight: 300;
+          line-height: 1.6;
+        }
+
+        .premium-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          margin-top: 2rem;
+          padding: 1rem 2rem;
+          background: transparent;
+          border: 1px solid rgba(255,255,255,0.2);
+          color: #ffffff;
+          font-family: 'Inter', sans-serif;
+          font-weight: 600;
+          font-size: 0.85rem;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: all 0.4s ease;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .premium-btn::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: var(--primary, #f38d1c);
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 0.4s ease;
+          z-index: -1;
+        }
+
+        .premium-btn:hover {
+          border-color: var(--primary, #f38d1c);
+          padding-left: 2.5rem;
+          padding-right: 1.5rem;
+        }
+
+        .premium-btn:hover::before {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        .premium-btn svg {
+          transition: transform 0.4s ease;
+        }
+
+        .premium-btn:hover svg {
+          transform: translateX(5px);
+        }
+
         /* Responsive Design */
-        @media (max-width: 992px) {
-          .about-layout {
-            flex-direction: column;
+        @media (max-width: 1024px) {
+          .about-premium-layout {
             gap: 4rem;
+            flex-direction: column;
           }
           
-          .about-image-column {
-            max-width: 500px;
-            margin: 0 auto;
+          .about-premium-image-col {
+            width: 100%;
+            max-width: 600px;
           }
 
-          .about-content-box {
-            padding: 2.5rem 2rem;
+          .premium-text-content {
+            max-width: 100%;
           }
         }
 
-        @media (max-width: 600px) {
-          .about-content-box {
-            padding: 2rem 1.5rem;
+        @media (max-width: 768px) {
+          .about-premium {
+            padding: 5rem 0 4rem;
           }
           
-          .about-heading {
-            font-size: 1.3rem;
+          .premium-heading {
+            font-size: 3rem;
+          }
+          
+          .premium-paragraph.lead {
+            font-size: 1.15rem;
           }
         }
       `}</style>
